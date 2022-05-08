@@ -3,6 +3,8 @@ const path = require("path");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
+const programs = require("./routes/programs");
+
 dotenv.config();
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 /* Public Routes */
+app.use("/api/programs", programs);
 
 /* Serve HTML files */
 app.use(express.static(path.join(__dirname, "public")));
