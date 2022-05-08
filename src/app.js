@@ -18,6 +18,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/styles", express.static(path.join(__dirname, "public", "styles")));
 app.use("/scripts", express.static(path.join(__dirname, "public", "scripts")));
+app.use("/images", express.static(path.join(__dirname, "public", "images")));
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "public", "html", "index.html"));
