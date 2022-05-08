@@ -16,6 +16,7 @@ app.use(cors());
 
 /* Serve HTML files */
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/html", express.static(path.join(__dirname, "public", "html")));
 app.use("/styles", express.static(path.join(__dirname, "public", "styles")));
 app.use("/scripts", express.static(path.join(__dirname, "public", "scripts")));
 app.use("/images", express.static(path.join(__dirname, "public", "images")));
