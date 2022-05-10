@@ -28,9 +28,6 @@ const changeTablesContent = (filter = undefined) => {
           program.name.toLowerCase().includes(filter.trim())
         );
 
-  // clean the table
-  tbl.innerHTML = "";
-
   // create table's head
   const tblHead = document.createElement("thead");
   tblHead.className = "table-head";
@@ -68,22 +65,25 @@ const changeTablesContent = (filter = undefined) => {
 const setProgramsData = (responsePrograms) => {
   programs = responsePrograms;
 
+  // clean the table
+  tbl.innerHTML = "";
+
   // error
   if (!programs) {
-    messagePar.className = "has-error";
+    messagePar.className = "message has-error";
     messagePar.textContent = "Something went wrong. Please try again";
     return;
   }
 
   // success but no data found
   if (programs.length === 0) {
-    messagePar.className = "no-data";
+    messagePar.className = "message no-data";
     messagePar.textContent = "No programs found. Please try again";
     return;
   }
 
   // success and data found
-  messagePar.className = "has-data";
+  messagePar.className = "message has-data";
   messagePar.textContent = "";
 
   containerDiv.appendChild(searchInput);
@@ -100,7 +100,7 @@ const setProgramsData = (responsePrograms) => {
  */
 const getPrograms = async () => {
   try {
-    messagePar.className = "no-data";
+    messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
     const response = await fetch(`${baseUrl}/api/programs`);
     const { programs } = await response.json();
