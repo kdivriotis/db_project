@@ -2,18 +2,13 @@ const baseUrl = "http://localhost";
 
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
+const wrapperDiv = document.querySelector(".projects-wrapper");
 
-const dateFromInput = document.getElementById("date-from");
-const dateToInput = document.getElementById("date-to");
-const minDurationInput = document.getElementById("duration-min");
-const maxDurationInput = document.getElementById("duration-max");
-const executiveIdInput = document.getElementById("executive-id");
-
-const tbl = document.createElement("table");
-tbl.className = "projects-table";
-
-const wrapperDiv = document.createElement("div");
-wrapperDiv.className = "table-wrapper";
+const dateFromInput = document.querySelector("#date-from");
+const dateToInput = document.querySelector("#date-to");
+const minDurationInput = document.querySelector("#duration-min");
+const maxDurationInput = document.querySelector("#duration-max");
+const executiveIdInput = document.querySelector("#executive-id");
 
 let projects = null;
 
@@ -27,58 +22,55 @@ const navigateToProject = (id) => {
 };
 
 /**
- * Change table's content
+ * Change wrapper div's content
  */
-const changeTablesContent = () => {
-  // create table's head
-  const tblHead = document.createElement("thead");
-  tblHead.className = "table-head";
-  const tblHeadRow = document.createElement("tr");
-  tblHeadRow.className = "projects-row";
-  const tblHeadTitle = document.createElement("th");
-  tblHeadTitle.innerHTML = "Title";
-  const tblHeadDescription = document.createElement("th");
-  tblHeadDescription.innerHTML = "Description";
-  const tblHeadBudget = document.createElement("th");
-  tblHeadBudget.innerHTML = "Budget (€)";
-  const tblHeadStartDate = document.createElement("th");
-  tblHeadStartDate.innerHTML = "Start Date";
-  const tblHeadEndDate = document.createElement("th");
-  tblHeadEndDate.innerHTML = "End Date";
-  const tblHeadDuration = document.createElement("th");
-  tblHeadDuration.innerHTML = "Duration";
+const changeProjectsContent = () => {
+  // create projects' list header
+  const projectsHeaderRow = document.createElement("div");
+  projectsHeaderRow.className = "projects-row head";
+  const projectsHeaderRowTitle = document.createElement("h4");
+  projectsHeaderRowTitle.innerHTML = "Title";
+  const projectsHeaderRowDescription = document.createElement("h4");
+  projectsHeaderRowDescription.innerHTML = "Description";
+  const projectsHeaderRowBudget = document.createElement("h4");
+  projectsHeaderRowBudget.innerHTML = "Budget (€)";
+  const projectsHeaderRowStartDate = document.createElement("h4");
+  projectsHeaderRowStartDate.innerHTML = "Start Date";
+  const projectsHeaderRowEndDate = document.createElement("h4");
+  projectsHeaderRowEndDate.innerHTML = "End Date";
+  const projectsHeaderRowDuration = document.createElement("h4");
+  projectsHeaderRowDuration.innerHTML = "Duration";
 
-  tblHeadRow.appendChild(tblHeadTitle);
-  tblHeadRow.appendChild(tblHeadDescription);
-  tblHeadRow.appendChild(tblHeadBudget);
-  tblHeadRow.appendChild(tblHeadStartDate);
-  tblHeadRow.appendChild(tblHeadEndDate);
-  tblHeadRow.appendChild(tblHeadDuration);
-  tblHead.appendChild(tblHeadRow);
-  tbl.appendChild(tblHead);
+  projectsHeaderRow.appendChild(projectsHeaderRowTitle);
+  projectsHeaderRow.appendChild(projectsHeaderRowDescription);
+  projectsHeaderRow.appendChild(projectsHeaderRowBudget);
+  projectsHeaderRow.appendChild(projectsHeaderRowStartDate);
+  projectsHeaderRow.appendChild(projectsHeaderRowEndDate);
+  projectsHeaderRow.appendChild(projectsHeaderRowDuration);
+  wrapperDiv.appendChild(projectsHeaderRow);
 
-  // create table's body
-  const tblBody = document.createElement("tbody");
+  // create list of projects
   for (let project of projects) {
-    const projectRow = document.createElement("tr");
+    const projectRow = document.createElement("div");
     projectRow.className = "projects-row";
-    const projectTitle = document.createElement("td");
+    // projectRow.setAttribute("tooltip", "Click to view related researchers");
+    const projectTitle = document.createElement("p");
     projectTitle.innerHTML = project.title;
-    const projectDescription = document.createElement("td");
+    const projectDescription = document.createElement("p");
     projectDescription.innerHTML = project.description;
-    const projectBudget = document.createElement("td");
+    const projectBudget = document.createElement("p");
     projectBudget.innerHTML = project.budget;
-    const projectStartDate = document.createElement("td");
+    const projectStartDate = document.createElement("p");
     const startDate = project.startDate ? new Date(project.startDate) : null;
     projectStartDate.innerHTML =
       startDate && !isNaN(startDate)
         ? startDate.toISOString().split("T")[0]
         : "-";
-    const projectEndDate = document.createElement("td");
+    const projectEndDate = document.createElement("p");
     const endDate = project.endDate ? new Date(project.endDate) : null;
     projectEndDate.innerHTML =
       endDate && !isNaN(endDate) ? endDate.toISOString().split("T")[0] : "-";
-    const projectDuration = document.createElement("td");
+    const projectDuration = document.createElement("p");
     projectDuration.innerHTML = project.duration
       ? `${project.duration} years`
       : "-";
@@ -90,18 +82,16 @@ const changeTablesContent = () => {
     projectRow.appendChild(projectEndDate);
     projectRow.appendChild(projectDuration);
     projectRow.addEventListener("click", () => navigateToProject(project.id));
-    tblBody.appendChild(projectRow);
+    wrapperDiv.appendChild(projectRow);
   }
-
-  tbl.appendChild(tblBody);
 };
 
-// After successfull request for projects, construct the table
+// After successfull request for projects, construct the list of projects
 const setProjectsData = (responseProjects) => {
   projects = responseProjects;
 
-  // clean the table
-  tbl.innerHTML = "";
+  // clean the list's contents
+  wrapperDiv.innerHTML = "";
 
   // error
   if (!projects) {
@@ -122,10 +112,7 @@ const setProjectsData = (responseProjects) => {
   messagePar.textContent = "";
 
   // create table
-  changeTablesContent();
-
-  wrapperDiv.appendChild(tbl);
-  containerDiv.appendChild(wrapperDiv);
+  changeProjectsContent();
 };
 
 /**

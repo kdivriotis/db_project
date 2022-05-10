@@ -38,19 +38,34 @@ body {
   padding: 0.5rem;
   width: 70%;
   box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   color: white;
   background-color: black;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande";
 }
 
-.filter-form > h4 {
-  text-align: center;
+.inline-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .two-fields-selection {
   width: 100%;
+  margin-top: 1.5rem;
+  position: relative;
   display: flex;
+}
+
+.two-fields-selection[fields-description]::before {
+  content: attr(fields-description);
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: -1.5rem;
+  left: 0;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .field {
@@ -59,7 +74,7 @@ body {
 }
 
 .field > label {
-  margin: 0.1rem auto;
+  margin: 0.2rem auto;
 }
 
 .field > input,
@@ -67,64 +82,62 @@ body {
   display: block;
   margin: 0.1rem auto;
   padding: 0.5rem;
+  border-radius: 0.375rem;
 }
 
 .field > select {
   width: 80%;
 }
 
-.table-wrapper {
+.projects-wrapper {
   margin: 1rem auto;
   width: 70%;
   max-height: calc(100vw-4rem);
   overflow-y: auto;
-  border-bottom: 1px solid black;
   box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
 }
 
-.projects-table {
-  table-layout: fixed;
+.projects-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
   width: 100%;
   word-wrap: break-word;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  border-collapse: collapse;
-}
-
-.table-head,
-.table-head > th,
-.table-head > tr {
-  position: sticky;
-  top: 0;
-}
-
-.projects-table > tbody {
-  overflow-y: auto;
-  height: 100%;
+  color: gray;
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .projects-row:hover {
   background-color: lightslategray;
-  cursor: pointer;
 }
 
-.projects-row > td,
-.projects-row > th {
-  border: 1px solid gray;
-  color: gray;
-  text-align: center;
-  padding: 1rem 0.3rem;
-  border-collapse: collapse;
+.projects-row:hover > p {
+  color: black;
 }
 
-.projects-row > th {
+.projects-row.head {
+  position: sticky;
+  top: 0;
   background-color: black;
   color: white;
-  font-size: 1rem;
+  z-index: 10;
   text-transform: uppercase;
   text-align: center;
 }
 
-.projects-row:hover > td {
-  color: black;
+.projects-row > p {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: gray;
+}
+
+.projects-row > h4 {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: white;
 }
