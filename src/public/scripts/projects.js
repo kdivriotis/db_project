@@ -23,7 +23,7 @@ let projects = null;
  */
 const navigateToProject = (id) => {
   if (!id) return;
-  console.log(id);
+  window.location.href = `${baseUrl}/project-researchers.html?id=${id}`;
 };
 
 /**
