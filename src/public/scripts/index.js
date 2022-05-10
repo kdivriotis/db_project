@@ -20,6 +20,9 @@ let programs = null;
  * @param {string | null} filter The string filter (optional) to be applied to the names of the read programs
  */
 const changeTablesContent = (filter = undefined) => {
+  // clean the table
+  tbl.innerHTML = "";
+
   // filter programs by name, if filter is given
   let filteredPrograms =
     !filter || filter.trim().length === 0
@@ -64,9 +67,6 @@ const changeTablesContent = (filter = undefined) => {
 // After successfull request for programs, construct the table and search input
 const setProgramsData = (responsePrograms) => {
   programs = responsePrograms;
-
-  // clean the table
-  tbl.innerHTML = "";
 
   // error
   if (!programs) {
