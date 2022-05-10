@@ -1,0 +1,104 @@
+.title {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.back-navigation {
+  position: absolute;
+  top: 1rem;
+  width: 10%;
+  height: 37px;
+  max-width: 10%;
+  margin: 0 2.5%;
+  border-radius: 0.375rem;
+  background-color: black;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.back-navigation > a {
+  color: white;
+  outline: none;
+  text-decoration: none;
+}
+
+.message {
+  color: black;
+  padding: 0;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.message .has-data {
+  display: none;
+}
+
+.message .has-error {
+  color: red;
+}
+
+.message .no-data {
+  color: yellow;
+}
+
+.table-wrapper {
+  margin: 1rem auto;
+  width: 70%;
+  max-height: calc(100vw-4rem);
+  overflow-y: auto;
+  border-bottom: 1px solid black;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+}
+
+.researchers-table {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  border-collapse: collapse;
+}
+
+.table-head,
+.table-head > th,
+.table-head > tr {
+  position: sticky;
+  top: 0;
+}
+
+.researchers-table > tbody {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.researchers-row:hover {
+  background-color: lightslategray;
+}
+
+.researchers-row > td,
+.researchers-row > th {
+  border: 1px solid gray;
+  color: gray;
+  text-align: center;
+  padding: 1rem 0.3rem;
+  border-collapse: collapse;
+}
+
+.researchers-row > th {
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.researchers-row:hover > td {
+  color: black;
+}
