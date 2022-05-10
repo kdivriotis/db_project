@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 const programs = require("./routes/programs");
+const projects = require("./routes/projects");
 const executives = require("./routes/executives");
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors());
 
 /* Public Routes */
 app.use("/api/programs", programs);
+app.use("/api/projects", projects);
 app.use("/api/executives", executives);
 
 /* Serve HTML files */
