@@ -22,15 +22,15 @@ body {
   text-align: center;
 }
 
-.message .has-data {
+.message.has-data {
   display: none;
 }
 
-.message .has-error {
+.message.has-error {
   color: red;
 }
 
-.message .no-data {
+.message.no-data {
   color: yellow;
 }
 
@@ -46,57 +46,59 @@ body {
   box-shadow: 0 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
 }
 
-.table-wrapper {
+.search-input.no-data {
+  display: none;
+}
+
+.programs-wrapper {
   margin: 1rem auto;
   width: 70%;
   max-height: calc(100vw-4rem);
   overflow-y: auto;
-  border-bottom: 1px solid black;
   box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
 }
 
-.programs-table {
-  table-layout: fixed;
+.programs-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   width: 100%;
   word-wrap: break-word;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  border-collapse: collapse;
-}
-
-.table-head,
-.table-head > th,
-.table-head > tr {
-  position: sticky;
-  top: 0;
-}
-
-.programs-table > tbody {
-  overflow-y: auto;
-  height: 100%;
+  color: gray;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .programs-row:hover {
   background-color: lightslategray;
 }
 
-.programs-row > td,
-.programs-row > th {
-  border: 1px solid gray;
-  color: gray;
-  text-align: left;
-  padding: 1rem 2rem;
-  border-collapse: collapse;
+.programs-row:hover > p {
+  color: black;
 }
 
-.programs-row > th {
+.programs-row.head {
+  position: sticky;
+  top: 0;
   background-color: black;
   color: white;
-  font-size: 1rem;
+  z-index: 10;
   text-transform: uppercase;
   text-align: center;
 }
 
-.programs-row:hover > td {
-  color: black;
+.programs-row > p {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: gray;
+  text-align: center;
+}
+
+.programs-row > h4 {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: white;
 }

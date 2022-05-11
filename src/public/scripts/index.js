@@ -2,26 +2,18 @@ const baseUrl = "http://localhost";
 
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
-const tbl = document.createElement("table");
-tbl.className = "programs-table";
-
-const searchInput = document.createElement("input");
-searchInput.placeholder = "Search for program...";
-searchInput.className = "search-input";
-searchInput.type = "text";
-
-const wrapperDiv = document.createElement("div");
-wrapperDiv.className = "table-wrapper";
+const wrapperDiv = document.querySelector(".programs-wrapper");
+const searchInput = document.querySelector(".search-input");
 
 let programs = null;
 
 /**
- * Change table's content
+ * Change wrapper div's content
  * @param {string | null} filter The string filter (optional) to be applied to the names of the read programs
  */
-const changeTablesContent = (filter = undefined) => {
-  // clean the table
-  tbl.innerHTML = "";
+const changeProgramsContent = (filter = undefined) => {
+  // clean the list's contents
+  wrapperDiv.innerHTML = "";
 
   // filter programs by name, if filter is given
   let filteredPrograms =
@@ -31,40 +23,34 @@ const changeTablesContent = (filter = undefined) => {
           program.name.toLowerCase().includes(filter.trim())
         );
 
-  // create table's head
-  const tblHead = document.createElement("thead");
-  tblHead.className = "table-head";
-  const tblHeadRow = document.createElement("tr");
-  tblHeadRow.className = "programs-row";
-  const tblHeadName = document.createElement("th");
-  tblHeadName.innerHTML = "Name";
-  const tblHeadAddress = document.createElement("th");
-  tblHeadAddress.innerHTML = "Address";
+  // create programs' list header
+  const programsHeaderRow = document.createElement("div");
+  programsHeaderRow.className = "programs-row head";
+  const programsHeaderRowName = document.createElement("h4");
+  programsHeaderRowName.innerHTML = "Name";
+  const programsHeaderRowAddress = document.createElement("h4");
+  programsHeaderRowAddress.innerHTML = "Address";
 
-  tblHeadRow.appendChild(tblHeadName);
-  tblHeadRow.appendChild(tblHeadAddress);
-  tblHead.appendChild(tblHeadRow);
-  tbl.appendChild(tblHead);
+  programsHeaderRow.appendChild(programsHeaderRowName);
+  programsHeaderRow.appendChild(programsHeaderRowAddress);
+  wrapperDiv.appendChild(programsHeaderRow);
 
-  // create table's body
-  const tblBody = document.createElement("tbody");
+  // create list of programs
   for (let program of filteredPrograms) {
-    const programRow = document.createElement("tr");
+    const programRow = document.createElement("div");
     programRow.className = "programs-row";
-    const programName = document.createElement("td");
+    const programName = document.createElement("p");
     programName.innerHTML = program.name;
-    const programAddress = document.createElement("td");
+    const programAddress = document.createElement("p");
     programAddress.innerHTML = program.address;
 
     programRow.appendChild(programName);
     programRow.appendChild(programAddress);
-    tblBody.appendChild(programRow);
+    wrapperDiv.appendChild(programRow);
   }
-
-  tbl.appendChild(tblBody);
 };
 
-// After successfull request for programs, construct the table and search input
+// After successfull request for programs, construct the list of programs and search input
 const setProgramsData = (responsePrograms) => {
   programs = responsePrograms;
 
@@ -85,14 +71,10 @@ const setProgramsData = (responsePrograms) => {
   // success and data found
   messagePar.className = "message has-data";
   messagePar.textContent = "";
+  searchInput.className = "search-input";
 
-  containerDiv.appendChild(searchInput);
-
-  // create table
-  changeTablesContent();
-
-  wrapperDiv.appendChild(tbl);
-  containerDiv.appendChild(wrapperDiv);
+  // create prorgams list
+  changeProgramsContent();
 };
 
 /**
@@ -114,5 +96,5 @@ getPrograms();
 
 searchInput.addEventListener("input", (event) => {
   const searchText = event.target.value;
-  changeTablesContent(searchText);
+  changeProgramsContent(searchText);
 });
