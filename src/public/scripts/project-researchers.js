@@ -5,58 +5,43 @@ const urlParams = new URLSearchParams(queryString);
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const titleElement = document.querySelector(".title");
-
-const dateFromInput = document.getElementById("date-from");
-const dateToInput = document.getElementById("date-to");
-const minDurationInput = document.getElementById("duration-min");
-const maxDurationInput = document.getElementById("duration-max");
-const executiveIdInput = document.getElementById("executive-id");
-
-const tbl = document.createElement("table");
-tbl.className = "researchers-table";
-
-const wrapperDiv = document.createElement("div");
-wrapperDiv.className = "table-wrapper";
+const wrapperDiv = document.querySelector(".researchers-wrapper");
 
 let projectResearchers = null;
 
 /**
- * Change table's content
+ * Change wrapper div's content
  */
-const changeTablesContent = () => {
-  // create table's head
-  const tblHead = document.createElement("thead");
-  tblHead.className = "table-head";
-  const tblHeadRow = document.createElement("tr");
-  tblHeadRow.className = "researchers-row";
-  const tblHeadName = document.createElement("th");
-  tblHeadName.innerHTML = "Name";
-  const tblHeadSurname = document.createElement("th");
-  tblHeadSurname.innerHTML = "Surname";
-  const tblHeadGender = document.createElement("th");
-  tblHeadGender.innerHTML = "Gender";
-  const tblHeadBirthDate = document.createElement("th");
-  tblHeadBirthDate.innerHTML = "Birth Date";
+const changeResearchersContent = () => {
+  // create researchers' list header
+  const researchersHeaderRow = document.createElement("div");
+  researchersHeaderRow.className = "researchers-row head";
+  const researchersHeaderRowName = document.createElement("h4");
+  researchersHeaderRowName.innerHTML = "Name";
+  const researchersHeaderRowSurname = document.createElement("h4");
+  researchersHeaderRowSurname.innerHTML = "Surname";
+  const researchersHeaderRowGender = document.createElement("h4");
+  researchersHeaderRowGender.innerHTML = "Gender";
+  const researchersHeaderRowBirthDate = document.createElement("h4");
+  researchersHeaderRowBirthDate.innerHTML = "Birth Date";
 
-  tblHeadRow.appendChild(tblHeadName);
-  tblHeadRow.appendChild(tblHeadSurname);
-  tblHeadRow.appendChild(tblHeadGender);
-  tblHeadRow.appendChild(tblHeadBirthDate);
-  tblHead.appendChild(tblHeadRow);
-  tbl.appendChild(tblHead);
+  researchersHeaderRow.appendChild(researchersHeaderRowName);
+  researchersHeaderRow.appendChild(researchersHeaderRowSurname);
+  researchersHeaderRow.appendChild(researchersHeaderRowGender);
+  researchersHeaderRow.appendChild(researchersHeaderRowBirthDate);
+  wrapperDiv.appendChild(researchersHeaderRow);
 
-  // create table's body
-  const tblBody = document.createElement("tbody");
+  // create list of researchers
   for (let researcher of projectResearchers) {
-    const researcherRow = document.createElement("tr");
+    const researcherRow = document.createElement("div");
     researcherRow.className = "researchers-row";
-    const researcherName = document.createElement("td");
+    const researcherName = document.createElement("p");
     researcherName.innerHTML = researcher.name;
-    const researcherSurname = document.createElement("td");
+    const researcherSurname = document.createElement("p");
     researcherSurname.innerHTML = researcher.surname;
-    const researcherGender = document.createElement("td");
+    const researcherGender = document.createElement("p");
     researcherGender.innerHTML = researcher.gender;
-    const researcherBirthDate = document.createElement("td");
+    const researcherBirthDate = document.createElement("p");
     const birthDate = researcher.birthDate
       ? new Date(researcher.birthDate)
       : null;
@@ -69,10 +54,8 @@ const changeTablesContent = () => {
     researcherRow.appendChild(researcherSurname);
     researcherRow.appendChild(researcherGender);
     researcherRow.appendChild(researcherBirthDate);
-    tblBody.appendChild(researcherRow);
+    wrapperDiv.appendChild(researcherRow);
   }
-
-  tbl.appendChild(tblBody);
 };
 
 // After successfull request for project's name, construct the title
@@ -80,12 +63,12 @@ const setTitle = (title) => {
   titleElement.textContent = title;
 };
 
-// After successfull request for project's researchers, construct the table
+// After successfull request for project's researchers, construct the list of researchers
 const setProjectResearchersData = (responseProjectResearchers) => {
   projectResearchers = responseProjectResearchers;
 
-  // clean the table
-  tbl.innerHTML = "";
+  // clean the list's contents
+  wrapperDiv.innerHTML = "";
 
   // error
   if (!projectResearchers) {
@@ -105,11 +88,8 @@ const setProjectResearchersData = (responseProjectResearchers) => {
   messagePar.className = "message has-data";
   messagePar.textContent = "";
 
-  // create table
-  changeTablesContent();
-
-  wrapperDiv.appendChild(tbl);
-  containerDiv.appendChild(wrapperDiv);
+  // create list
+  changeResearchersContent();
 };
 
 /**
