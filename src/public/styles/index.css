@@ -11,6 +11,7 @@ body {
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  user-select: none;
 }
 
 .message {
@@ -20,6 +21,7 @@ body {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+  user-select: none;
 }
 
 .message.has-data {
@@ -88,6 +90,7 @@ body {
   z-index: 10;
   text-transform: uppercase;
   text-align: center;
+  user-select: none;
 }
 
 .programs-row > p {

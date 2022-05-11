@@ -6,6 +6,7 @@
   text-align: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  user-select: none;
 }
 
 .back-navigation {
@@ -22,6 +23,7 @@
   font-weight: 700;
   position: relative;
   z-index: 1;
+  user-select: none;
 }
 
 .back-navigation::after {
@@ -50,17 +52,18 @@
   margin: 0 auto;
   font-size: 1.2rem;
   font-weight: bold;
+  user-select: none;
 }
 
-.message .has-data {
+.message.has-data {
   display: none;
 }
 
-.message .has-error {
+.message.has-error {
   color: red;
 }
 
-.message .no-data {
+.message.no-data {
   color: yellow;
 }
 
@@ -106,6 +109,7 @@
   z-index: 10;
   text-transform: uppercase;
   text-align: center;
+  user-select: none;
 }
 
 .researchers-row > p {
