@@ -7,13 +7,30 @@ const { pool } = require("../utils/db");
  * @param {number | null} minDuration The minimum duration we want the projects to have
  * @param {number | null} maxDuration The maximum duration we want the projects to have
  * @param {number | null} executiveId The unique id of the executive that handles the funding
+ * @param {Object} orderBy The selected filter to order results by
  * @returns Message in case of failure, otherwise array of available programs { id, title, description, budget, startDate, endDate, duration }
  */
 module.exports.getProjects = async (req, res) => {
+  const orderByMappings = {
+    title: "title",
+    description: "description",
+    budget: "budget",
+    startDate: "startDate",
+    endDate: "endDate",
+    duration: "duration",
+  };
+
   try {
     // get selected parameters from request's body (if they exist)
-    const { dateFrom, dateTo, minDuration, maxDuration, executiveId } =
-      req.query;
+    const {
+      dateFrom,
+      dateTo,
+      minDuration,
+      maxDuration,
+      executiveId,
+      orderBy,
+      order,
+    } = req.query;
 
     // initial structure of the SQL query to get
     let queryText = `SELECT id, title, description, budget, start_date AS startDate, end_date AS endDate, duration FROM project`;
@@ -48,6 +65,13 @@ module.exports.getProjects = async (req, res) => {
     // build the final query string with parameters (if any)
     if (queryParametersStr.length > 0)
       queryText = `${queryText} WHERE ${queryParametersStr.join(" AND ")}`;
+
+    // check if orderBy is given and valid
+    if (orderBy && orderByMappings[orderBy]) {
+      queryText = `${queryText} ORDER BY ${orderByMappings[orderBy]} ${
+        parseInt(order) === 1 ? "DESC" : "ASC"
+      }`;
+    }
 
     const projectsQuery = await pool.query(queryText, queryParameters);
 

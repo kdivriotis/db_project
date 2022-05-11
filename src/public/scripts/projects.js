@@ -11,6 +11,17 @@ const maxDurationInput = document.querySelector("#duration-max");
 const executiveIdInput = document.querySelector("#executive-id");
 
 let projects = null;
+let orderBy = { key: null, order: null };
+
+/**
+ * Handle click on a header item - Change sorting order of array
+ * @param {string} orderSelection The element to sort the list of projects by
+ */
+const setOrderMethod = (orderSelection) => {
+  const alterOrder = () => (orderBy.order === 1 ? 0 : 1);
+  orderBy.order = orderBy.key === orderSelection ? alterOrder() : 0;
+  orderBy.key = orderSelection;
+};
 
 /**
  * Handle click on a project
@@ -28,18 +39,52 @@ const changeProjectsContent = () => {
   // create projects' list header
   const projectsHeaderRow = document.createElement("div");
   projectsHeaderRow.className = "projects-row head";
+  const headerRowElements = [];
   const projectsHeaderRowTitle = document.createElement("h4");
   projectsHeaderRowTitle.innerHTML = "Title";
+  projectsHeaderRowTitle.dataset.name = "title";
+  headerRowElements.push(projectsHeaderRowTitle);
   const projectsHeaderRowDescription = document.createElement("h4");
   projectsHeaderRowDescription.innerHTML = "Description";
+  projectsHeaderRowDescription.dataset.name = "description";
+  headerRowElements.push(projectsHeaderRowDescription);
   const projectsHeaderRowBudget = document.createElement("h4");
-  projectsHeaderRowBudget.innerHTML = "Budget (€)";
+  projectsHeaderRowBudget.innerHTML = "Budget";
+  projectsHeaderRowBudget.dataset.name = "budget";
+  headerRowElements.push(projectsHeaderRowBudget);
   const projectsHeaderRowStartDate = document.createElement("h4");
   projectsHeaderRowStartDate.innerHTML = "Start Date";
+  projectsHeaderRowStartDate.dataset.name = "startDate";
+  headerRowElements.push(projectsHeaderRowStartDate);
   const projectsHeaderRowEndDate = document.createElement("h4");
   projectsHeaderRowEndDate.innerHTML = "End Date";
+  projectsHeaderRowEndDate.dataset.name = "endDate";
+  headerRowElements.push(projectsHeaderRowEndDate);
   const projectsHeaderRowDuration = document.createElement("h4");
   projectsHeaderRowDuration.innerHTML = "Duration";
+  projectsHeaderRowDuration.dataset.name = "duration";
+  headerRowElements.push(projectsHeaderRowDuration);
+
+  const setHeaderRowElementsClassnames = () => {
+    for (let headerRowElement of headerRowElements) {
+      headerRowElement.className =
+        headerRowElement.dataset.name === orderBy.key
+          ? orderBy.order === 1
+            ? "order-desc"
+            : "order-asc"
+          : "";
+    }
+  };
+
+  for (let headerRowElement of headerRowElements) {
+    headerRowElement.addEventListener("click", () => {
+      setOrderMethod(headerRowElement.dataset.name);
+      setHeaderRowElementsClassnames();
+      getProjects();
+    });
+  }
+
+  setHeaderRowElementsClassnames();
 
   projectsHeaderRow.appendChild(projectsHeaderRowTitle);
   projectsHeaderRow.appendChild(projectsHeaderRowDescription);
@@ -59,7 +104,7 @@ const changeProjectsContent = () => {
     const projectDescription = document.createElement("p");
     projectDescription.innerHTML = project.description;
     const projectBudget = document.createElement("p");
-    projectBudget.innerHTML = project.budget;
+    projectBudget.innerHTML = `${project.budget} €`;
     const projectStartDate = document.createElement("p");
     const startDate = project.startDate ? new Date(project.startDate) : null;
     projectStartDate.innerHTML =
@@ -146,6 +191,11 @@ const getProjects = async () => {
   }
   if (executiveId && executiveId > 0) {
     queryParameters.executiveId = executiveId;
+    hasQueryParameters = true;
+  }
+  if (orderBy?.key) {
+    queryParameters.orderBy = orderBy.key;
+    queryParameters.order = orderBy.order;
     hasQueryParameters = true;
   }
 
