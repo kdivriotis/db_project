@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EL.ID.E.K</title>
+    <link rel="icon" href="/icons/favicon.ico?v=2" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/research-fields.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <!-- Header -->
+        <div class="sidebar-header">
+          <img src="/images/logo.png" alt="logo" />
+          <h1>Databases 2022</h1>
+        </div>
+        <!-- Navigations -->
+        <div class="sidebar-nav">
+          <div class="sidebar-nav-item">
+            <a href="/index.html">Programs</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/projects.html">Projects</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="#">Projects per Researcher</a>
+          </div>
+          <div class="sidebar-nav-item active">
+            <a href="/research-fields.html">Research Fields</a>
+          </div>
+        </div>
+      </nav>
+      <!-- Page contents -->
+      <section class="container">
+        <h2 class="title">Find projects and researchers per research field</h2>
+        <form class="filter-form" onsubmit="return false;">
+          <!-- Select research field -->
+          <div class="field">
+            <label for="research-field-name">Research Field name</label>
+            <select id="research-field-name"></select>
+          </div>
+        </form>
+        <p class="message"></p>
+        <div class="wrapper">
+          <h3>Projects</h3>
+          <h3>Researchers</h3>
+          <div class="projects-wrapper"></div>
+          <div class="researchers-wrapper"></div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      type="module"
+      src="/scripts/research-fields.js"
+      async
+      defer
+    ></script>
+  </body>
+</html>
