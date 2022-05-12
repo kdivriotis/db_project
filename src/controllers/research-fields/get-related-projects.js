@@ -25,7 +25,6 @@ module.exports.getRelatedProjects = async (req, res) => {
     );
 
     const projects = projectsQuery[0];
-    console.log(projects);
 
     // if no projects found, return with error
     if (!projects || projects.length === 0) {
@@ -54,7 +53,6 @@ module.exports.getRelatedProjects = async (req, res) => {
     });
   } catch (error) {
     // On database failure, return
-    console.log(error);
     return res
       .status(500)
       .json({ message: "Something went wrong, please try again" });

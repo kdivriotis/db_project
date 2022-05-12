@@ -155,7 +155,6 @@ const getRelatedProjectsAndResearchers = async () => {
     const requestUrl = `${baseUrl}/api/research-fields/related-projects/${fieldName}`;
     const response = await fetch(requestUrl);
     const { projects, researchers } = await response.json();
-    console.log(researchers);
     setData(projects, researchers);
   } catch (e) {
     setData();
@@ -175,9 +174,8 @@ const getResearchFields = async () => {
       opt.innerHTML = researchField.name;
       researchFieldInput.appendChild(opt);
     }
-  } catch (e) {
-    console.log(e);
-  }
+    getRelatedProjectsAndResearchers();
+  } catch (e) {}
 };
 
 getResearchFields();
