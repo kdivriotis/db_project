@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { getExecutives } = require("../controllers/get-executives");
+const { getExecutives } = require("../controllers/executives/get-executives");
 
 const router = express.Router();
 
