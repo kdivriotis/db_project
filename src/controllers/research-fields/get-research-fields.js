@@ -1,13 +1,18 @@
 const { pool } = require("../../utils/db");
 
 /**
- * Get all research fields in alphabetical order.
- * @returns Message in case of failure, otherwise array of all research fields { name }
+ * Get all research fields sorted by popularity.
+ * @returns Message in case of failure, otherwise array of all research fields { name, frequency }
  */
 module.exports.getResearchFields = async (req, res) => {
   try {
     const researchFieldsQuery = await pool.query(
-      `SELECT name FROM research_field ORDER BY name`,
+      `SELECT rf.name, COUNT(*) AS frequency
+      FROM related_to AS rt
+      JOIN research_field AS rf
+      ON rf.name = rt.research_fieldName
+      GROUP BY rt.research_fieldName
+      ORDER BY frequency DESC, name ASC`,
       []
     );
 
