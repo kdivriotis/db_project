@@ -171,7 +171,7 @@ const getResearchFields = async () => {
     for (let researchField of researchFields) {
       const opt = document.createElement("option");
       opt.value = researchField.name;
-      opt.innerHTML = researchField.name;
+      opt.innerHTML = `${researchField.name} (${researchField.frequency})`;
       researchFieldInput.appendChild(opt);
     }
     getRelatedProjectsAndResearchers();
