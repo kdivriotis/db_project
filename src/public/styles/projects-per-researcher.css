@@ -1,6 +1,7 @@
 body {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .title {
@@ -83,7 +84,6 @@ body {
 .profile-card {
   margin: 0.8rem auto;
   width: 100%;
-  max-height: calc(100vw-4rem);
   overflow-y: auto;
   box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
@@ -91,21 +91,37 @@ body {
 }
 
 .profile-card {
-  min-height: auto;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   word-wrap: break-word;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
-.profile-card:nth-child(odd) {
+.profile-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-bottom: 1px solid black;
+  height: 60px;
+  padding: 0.3rem;
+  align-items: center;
+}
+
+.profile-info:last-child {
+  border: none;
+}
+
+.profile-info > p:first-child {
+  margin-left: 1rem;
   color: gray;
   font-size: 1rem;
   font-weight: bold;
+  text-align: left;
 }
 
-.profile-card:nth-child(even) {
+.profile-info > p:last-child {
   color: gray;
   font-size: 1rem;
   font-style: italic;

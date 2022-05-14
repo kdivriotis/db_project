@@ -74,18 +74,35 @@ const changeProjectsContent = () => {
 const changeProfileContent = () => {
   // create researcher's profile card
   const { name, surname, gender, birthDate, age } = researcherProjects[0];
+  const researcherNameDiv = document.createElement("div");
+  researcherNameDiv.className = "profile-info";
   const researcherName = document.createElement("p");
   researcherName.innerHTML = "Name";
   const researcherNameValue = document.createElement("p");
   researcherNameValue.innerHTML = name;
+  researcherNameDiv.appendChild(researcherName);
+  researcherNameDiv.appendChild(researcherNameValue);
+
+  const researcherSurnameDiv = document.createElement("div");
+  researcherSurnameDiv.className = "profile-info";
   const researcherSurname = document.createElement("p");
   researcherSurname.innerHTML = "Surname";
   const researcherSurnameValue = document.createElement("p");
   researcherSurnameValue.innerHTML = surname;
+  researcherSurnameDiv.appendChild(researcherSurname);
+  researcherSurnameDiv.appendChild(researcherSurnameValue);
+
+  const researcherGenderDiv = document.createElement("div");
+  researcherGenderDiv.className = "profile-info";
   const researcherGender = document.createElement("p");
   researcherGender.innerHTML = "Gender";
   const researcherGenderValue = document.createElement("p");
   researcherGenderValue.innerHTML = gender;
+  researcherGenderDiv.appendChild(researcherGender);
+  researcherGenderDiv.appendChild(researcherGenderValue);
+
+  const researcherBirthDateDiv = document.createElement("div");
+  researcherBirthDateDiv.className = "profile-info";
   const researcherBirthDate = document.createElement("p");
   researcherBirthDate.innerHTML = "Birth Date";
   const researcherBirthDateValue = document.createElement("p");
@@ -94,21 +111,23 @@ const changeProfileContent = () => {
     tempBirthDate && !isNaN(tempBirthDate)
       ? tempBirthDate.toISOString().split("T")[0]
       : "-";
+  researcherBirthDateDiv.appendChild(researcherBirthDate);
+  researcherBirthDateDiv.appendChild(researcherBirthDateValue);
+
+  const researcherDurationDiv = document.createElement("div");
+  researcherDurationDiv.className = "profile-info";
   const researcherDuration = document.createElement("p");
-  researcherDuration.innerHTML = "Birth Date";
+  researcherDuration.innerHTML = "Age";
   const researcherDurationValue = document.createElement("p");
   researcherDurationValue.innerHTML = age ? `${age} years old` : "-";
+  researcherDurationDiv.appendChild(researcherDuration);
+  researcherDurationDiv.appendChild(researcherDurationValue);
 
-  profileCardDiv.appendChild(researcherName);
-  profileCardDiv.appendChild(researcherNameValue);
-  profileCardDiv.appendChild(researcherSurname);
-  profileCardDiv.appendChild(researcherSurnameValue);
-  profileCardDiv.appendChild(researcherGender);
-  profileCardDiv.appendChild(researcherGenderValue);
-  profileCardDiv.appendChild(researcherBirthDate);
-  profileCardDiv.appendChild(researcherBirthDateValue);
-  profileCardDiv.appendChild(researcherDuration);
-  profileCardDiv.appendChild(researcherDurationValue);
+  profileCardDiv.appendChild(researcherNameDiv);
+  profileCardDiv.appendChild(researcherSurnameDiv);
+  profileCardDiv.appendChild(researcherGenderDiv);
+  profileCardDiv.appendChild(researcherBirthDateDiv);
+  profileCardDiv.appendChild(researcherDurationDiv);
 };
 
 // After successfull request for projects for selected researcher, construct the profile & list of projects
