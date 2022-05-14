@@ -7,6 +7,7 @@ const programs = require("./routes/programs");
 const projects = require("./routes/projects");
 const executives = require("./routes/executives");
 const researchFields = require("./routes/research-fields");
+const researhcers = require("./routes/researchers");
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/api/programs", programs);
 app.use("/api/projects", projects);
 app.use("/api/executives", executives);
 app.use("/api/research-fields", researchFields);
+app.use("/api/researchers", researhcers);
 
 /* Serve HTML files */
 app.use(express.static(path.join(__dirname, "public")));
