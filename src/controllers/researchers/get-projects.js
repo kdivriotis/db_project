@@ -7,6 +7,7 @@ const { pool } = require("../../utils/db");
 module.exports.getProjects = async (req, res) => {
   // get researcherId from URL parameters
   const { researcherId } = req.params;
+
   // check for validity of given id (return status 400 on failure)
   if (!researcherId || researcherId === 0) {
     return res.status(400).json({ message: "Invalid parameters" });
@@ -15,11 +16,11 @@ module.exports.getProjects = async (req, res) => {
   try {
     const researcherProjectsQuery = await pool.query(
       `SELECT name, surname, gender, birth_date AS birthDate, TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age, 
-        project_title AS title, project_start_date AS startDate, project_end_date AS endDate, project_duration AS duration
+        project_title AS title, project_budget AS budget, project_start_date AS startDate, project_end_date AS endDate, project_duration AS duration
       FROM projects_per_researcher
       WHERE id = ?
       ORDER BY startDate ASC`,
-      []
+      [researcherId]
     );
 
     const researcherProjects = researcherProjectsQuery[0];

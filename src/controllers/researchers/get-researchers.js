@@ -6,7 +6,7 @@ const { pool } = require("../../utils/db");
  */
 module.exports.getResearchers = async (req, res) => {
   try {
-    const researchersuery = await pool.query(
+    const researchersQuery = await pool.query(
       `SELECT DISTINCT(id), name, surname
       FROM projects_per_researcher
       ORDER BY name ASC, surname ASC`,
