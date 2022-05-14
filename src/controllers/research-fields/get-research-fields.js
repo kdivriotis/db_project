@@ -11,6 +11,9 @@ module.exports.getResearchFields = async (req, res) => {
       FROM related_to AS rt
       JOIN research_field AS rf
       ON rf.name = rt.research_fieldName
+      JOIN project AS p
+      ON rt.projectId = p.id
+      WHERE p.duration IS NULL
       GROUP BY rt.research_fieldName
       ORDER BY frequency DESC, name ASC`,
       []
