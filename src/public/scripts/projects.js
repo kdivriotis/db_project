@@ -98,7 +98,7 @@ const changeProjectsContent = () => {
   for (let project of projects) {
     const projectRow = document.createElement("div");
     projectRow.className = "projects-row";
-    // projectRow.setAttribute("tooltip", "Click to view related researchers");
+    projectRow.setAttribute("tooltip", "Click to view related researchers");
     const projectTitle = document.createElement("p");
     projectTitle.innerHTML = project.title;
     const projectDescription = document.createElement("p");
