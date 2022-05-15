@@ -8,6 +8,7 @@ const projects = require("./routes/projects");
 const executives = require("./routes/executives");
 const researchFields = require("./routes/research-fields");
 const researhcers = require("./routes/researchers");
+const staticPages = require("./routes/static-pages");
 
 dotenv.config();
 
@@ -25,17 +26,14 @@ app.use("/api/executives", executives);
 app.use("/api/research-fields", researchFields);
 app.use("/api/researchers", researhcers);
 
-/* Serve HTML files */
+/* Serve static files (styles, images, etc.) */
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/", express.static(path.join(__dirname, "public", "html")));
 app.use("/styles", express.static(path.join(__dirname, "public", "styles")));
 app.use("/scripts", express.static(path.join(__dirname, "public", "scripts")));
 app.use("/images", express.static(path.join(__dirname, "public", "images")));
 app.use("/icons", express.static(path.join(__dirname, "public", "icons")));
 
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "html", "index.html"));
-// });
+app.use("/", staticPages);
 
 /* Error handling */
 app.use((req, res, next) => {

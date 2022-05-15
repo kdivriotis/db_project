@@ -26,7 +26,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/researchers-no-deliverables.css" />
+    <link rel="stylesheet" href="/styles/executive-funding-per-company.css" />
   </head>
   <body>
     <main class="layout">
@@ -40,57 +40,41 @@
         <!-- Navigations -->
         <div class="sidebar-nav">
           <div class="sidebar-nav-item">
-            <a href="/index.html">Programs</a>
+            <a href="/index">Programs</a>
           </div>
           <div class="sidebar-nav-item">
-            <a href="/projects.html">Projects</a>
+            <a href="/projects">Projects</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/researchers/projects">Researchers</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/research-fields">Research Fields</a>
           </div>
           <div class="sidebar-nav-item active">
-            <a href="#">Researchers</a>
-          </div>
-          <div class="sidebar-nav-sub-item">
-            <a href="/projects-per-researcher.html">Projects per Researcher</a>
-          </div>
-          <div class="sidebar-nav-sub-item">
-            <a href="/young-researchers.html">Young Researchers</a>
+            <a href="/executives/funding-per-company">Executives</a>
           </div>
           <div class="sidebar-nav-sub-item active">
-            <a href="/researchers-no-deliverables.html"
-              >Projects without Deliverables</a
-            >
-          </div>
-          <div class="sidebar-nav-item">
-            <a href="/research-fields.html">Research Fields</a>
-          </div>
-          <div class="sidebar-nav-item">
-            <a href="/executive-funding-per-company.html">Executives</a>
+            <a href="/executives/funding-per-company">Fundings per Company</a>
           </div>
         </div>
       </nav>
       <!-- Page contents -->
       <section class="container">
         <h2 class="title">
-          Researchers working on at least
-          <span
-            ><input
-              id="projects-limit"
-              type="number"
-              value="5"
-              min="1"
-              max="9"
-              size="1"
-              oninput="this.size = this.value.length"
-          /></span>
-          projects with no deliverables
+          Top 5 Executives funding the biggest amounts on a single Company
         </h2>
+        <p class="description">
+          In order from biggest to smallest amount funded
+        </p>
         <p class="message"></p>
-        <div class="researchers-wrapper"></div>
+        <div class="executives-wrapper"></div>
       </section>
     </main>
 
     <script
       type="module"
-      src="/scripts/researchers-no-deliverables.js"
+      src="/scripts/executive-funding-per-company.js"
       async
       defer
     ></script>

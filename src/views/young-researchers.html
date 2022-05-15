@@ -26,7 +26,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/interdisciplinary-fields.css" />
+    <link rel="stylesheet" href="/styles/youngest-researchers.css" />
   </head>
   <body>
     <main class="layout">
@@ -40,43 +40,46 @@
         <!-- Navigations -->
         <div class="sidebar-nav">
           <div class="sidebar-nav-item">
-            <a href="/index.html">Programs</a>
+            <a href="/index">Programs</a>
           </div>
           <div class="sidebar-nav-item">
-            <a href="/projects.html">Projects</a>
-          </div>
-          <div class="sidebar-nav-item">
-            <a href="/projects-per-researcher.html">Researchers</a>
+            <a href="/projects">Projects</a>
           </div>
           <div class="sidebar-nav-item active">
-            <a href="#">Research Fields</a>
+            <a href="#">Researchers</a>
           </div>
           <div class="sidebar-nav-sub-item">
-            <a href="/research-fields.html">Related Projects</a>
+            <a href="/researchers/projects">Projects per Researcher</a>
           </div>
           <div class="sidebar-nav-sub-item active">
-            <a href="#">Common Pairs</a>
+            <a href="/researchers/young">Young Researchers</a>
+          </div>
+          <div class="sidebar-nav-sub-item">
+            <a href="/researchers/no-deliverables"
+              >Projects without Deliverables</a
+            >
           </div>
           <div class="sidebar-nav-item">
-            <a href="/executive-funding-per-company.html">Executives</a>
+            <a href="/research-fields">Research Fields</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/executives/funding-per-company">Executives</a>
           </div>
         </div>
       </nav>
       <!-- Page contents -->
       <section class="container">
-        <h2 class="title">Top 3 most common pairs of fields</h2>
-        <p class="description">
-          Most frequently appearing pairs of fields in interdisciplinary
-          projects
-        </p>
+        <h2 class="title">
+          Youngest researchers (under the age of 40) working on active projects
+        </h2>
         <p class="message"></p>
-        <div class="research-fields-wrapper"></div>
+        <div class="researchers-wrapper"></div>
       </section>
     </main>
 
     <script
       type="module"
-      src="/scripts/interdisciplinary-fields.js"
+      src="/scripts/youngest-researchers.js"
       async
       defer
     ></script>

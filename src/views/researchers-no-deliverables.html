@@ -26,7 +26,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/project-researchers.css" />
+    <link rel="stylesheet" href="/styles/researchers-no-deliverables.css" />
   </head>
   <body>
     <main class="layout">
@@ -40,37 +40,57 @@
         <!-- Navigations -->
         <div class="sidebar-nav">
           <div class="sidebar-nav-item">
-            <a href="/index.html">Programs</a>
+            <a href="/index">Programs</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/projects">Projects</a>
           </div>
           <div class="sidebar-nav-item active">
-            <a href="/projects.html">Projects</a>
+            <a href="#">Researchers</a>
+          </div>
+          <div class="sidebar-nav-sub-item">
+            <a href="/researchers/projects">Projects per Researcher</a>
+          </div>
+          <div class="sidebar-nav-sub-item">
+            <a href="/researchers/young">Young Researchers</a>
+          </div>
+          <div class="sidebar-nav-sub-item active">
+            <a href="/researchers/no-deliverables"
+              >Projects without Deliverables</a
+            >
           </div>
           <div class="sidebar-nav-item">
-            <a href="/projects-per-researcher.html">Researchers</a>
+            <a href="/research-fields">Research Fields</a>
           </div>
           <div class="sidebar-nav-item">
-            <a href="/research-fields.html">Research Fields</a>
-          </div>
-          <div class="sidebar-nav-item">
-            <a href="/executive-funding-per-company.html">Executives</a>
+            <a href="/executives/funding-per-company">Executives</a>
           </div>
         </div>
       </nav>
       <!-- Page contents -->
       <section class="container">
-        <h2 class="title"></h2>
+        <h2 class="title">
+          Researchers working on at least
+          <span
+            ><input
+              id="projects-limit"
+              type="number"
+              value="5"
+              min="1"
+              max="9"
+              size="1"
+              oninput="this.size = this.value.length"
+          /></span>
+          projects with no deliverables
+        </h2>
         <p class="message"></p>
         <div class="researchers-wrapper"></div>
-
-        <a class="back-navigation" href="/projects.html"
-          >Go back to projects page</a
-        >
       </section>
     </main>
 
     <script
       type="module"
-      src="/scripts/project-researchers.js"
+      src="/scripts/researchers-no-deliverables.js"
       async
       defer
     ></script>

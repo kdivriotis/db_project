@@ -26,7 +26,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/research-fields.css" />
+    <link rel="stylesheet" href="/styles/project-researchers.css" />
   </head>
   <body>
     <main class="layout">
@@ -40,51 +40,35 @@
         <!-- Navigations -->
         <div class="sidebar-nav">
           <div class="sidebar-nav-item">
-            <a href="/index.html">Programs</a>
-          </div>
-          <div class="sidebar-nav-item">
-            <a href="/projects.html">Projects</a>
-          </div>
-          <div class="sidebar-nav-item">
-            <a href="/projects-per-researcher.html">Researchers</a>
+            <a href="/index">Programs</a>
           </div>
           <div class="sidebar-nav-item active">
-            <a href="#">Research Fields</a>
-          </div>
-          <div class="sidebar-nav-sub-item active">
-            <a href="#">Related Projects</a>
-          </div>
-          <div class="sidebar-nav-sub-item">
-            <a href="/interdisciplinary-fields.html">Common Pairs</a>
+            <a href="/projects">Projects</a>
           </div>
           <div class="sidebar-nav-item">
-            <a href="/executive-funding-per-company.html">Executives</a>
+            <a href="/researchers/projects">Researchers</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/research-fields">Research Fields</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/executives/funding-per-company">Executives</a>
           </div>
         </div>
       </nav>
       <!-- Page contents -->
       <section class="container">
-        <h2 class="title">Find projects and researchers per research field</h2>
-        <form class="filter-form" onsubmit="return false;">
-          <!-- Select research field -->
-          <div class="field">
-            <label for="research-field-name">Research Field name</label>
-            <select id="research-field-name"></select>
-          </div>
-        </form>
+        <h2 class="title"></h2>
         <p class="message"></p>
-        <div class="wrapper">
-          <h3 id="projects-title">Projects</h3>
-          <h3 id="researchers-title">Researchers</h3>
-          <div class="projects-wrapper"></div>
-          <div class="researchers-wrapper"></div>
-        </div>
+        <div class="researchers-wrapper"></div>
+
+        <a class="back-navigation" href="/projects">Go back to projects page</a>
       </section>
     </main>
 
     <script
       type="module"
-      src="/scripts/research-fields.js"
+      src="/scripts/project-researchers.js"
       async
       defer
     ></script>

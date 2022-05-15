@@ -29,7 +29,7 @@ const setOrderMethod = (orderSelection) => {
  */
 const navigateToProject = (id) => {
   if (!id) return;
-  window.location.href = `${baseUrl}/project-researchers.html?id=${id}`;
+  window.location.href = `${baseUrl}/projects/researchers?id=${id}`;
 };
 
 /**
