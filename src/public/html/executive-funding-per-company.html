@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EL.ID.E.K</title>
+    <link rel="icon" href="/icons/favicon.ico?v=2" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/executive-funding-per-company.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <!-- Header -->
+        <div class="sidebar-header">
+          <img src="/images/logo.png" alt="logo" />
+          <h1>Databases 2022</h1>
+        </div>
+        <!-- Navigations -->
+        <div class="sidebar-nav">
+          <div class="sidebar-nav-item">
+            <a href="/index.html">Programs</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/projects.html">Projects</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/projects-per-researcher.html">Researchers</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/research-fields.html">Research Fields</a>
+          </div>
+          <div class="sidebar-nav-item active">
+            <a href="/executive-funding-per-company.html">Executives</a>
+          </div>
+          <div class="sidebar-nav-sub-item active">
+            <a href="/executive-funding-per-company.html"
+              >Fundings per Company</a
+            >
+          </div>
+        </div>
+      </nav>
+      <!-- Page contents -->
+      <section class="container">
+        <h2 class="title">
+          Top 5 Executives funding the biggest amounts on a single Company
+        </h2>
+        <p class="description">
+          In order from biggest to smallest amount funded
+        </p>
+        <p class="message"></p>
+        <div class="executives-wrapper"></div>
+      </section>
+    </main>
+
+    <script
+      type="module"
+      src="/scripts/executive-funding-per-company.js"
+      async
+      defer
+    ></script>
+  </body>
+</html>

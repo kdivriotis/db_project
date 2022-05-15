@@ -1,0 +1,102 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  user-select: none;
+}
+
+.description {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  user-select: none;
+}
+
+.message {
+  color: black;
+  padding: 0;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  user-select: none;
+}
+
+.message.has-data {
+  display: none;
+}
+
+.message.has-error {
+  color: red;
+}
+
+.message.no-data {
+  color: yellow;
+}
+
+.executives-wrapper {
+  margin: 1rem auto;
+  width: 70%;
+  overflow-y: auto;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  user-select: none;
+}
+
+.executives-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  word-wrap: break-word;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: gray;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.executives-row:hover {
+  background-color: lightslategray;
+}
+
+.executives-row > p {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.executives-row:hover > p {
+  color: black;
+}
+
+.executives-row.head {
+  position: sticky;
+  top: 0;
+  background-color: black;
+  color: white;
+  z-index: 10;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.executives-row > h4 {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: white;
+}

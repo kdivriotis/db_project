@@ -30,17 +30,17 @@ const changeExecutivesContent = () => {
 
   // create list of executives
   let index = 1;
-  for (let pair of executives) {
+  for (let executive of executives) {
     const executiveRow = document.createElement("div");
     executiveRow.className = "executives-row";
     const executiveNumber = document.createElement("p");
     executiveNumber.innerHTML = index++;
     const executiveExecutiveName = document.createElement("p");
-    executiveExecutiveName.innerHTML = pair.executive1;
+    executiveExecutiveName.innerHTML = executive.executiveName;
     const executiveCompanyName = document.createElement("p");
-    executiveCompanyName.innerHTML = pair.executive2;
+    executiveCompanyName.innerHTML = executive.companyName;
     const executiveTotalFundingAmount = document.createElement("p");
-    executiveTotalFundingAmount.innerHTML = pair.frequency;
+    executiveTotalFundingAmount.innerHTML = executive.totalFundingAmount;
 
     executiveRow.appendChild(executiveNumber);
     executiveRow.appendChild(executiveExecutiveName);
