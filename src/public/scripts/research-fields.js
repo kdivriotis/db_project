@@ -3,7 +3,9 @@ const baseUrl = "http://localhost";
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".wrapper");
+const projectsTitle = document.querySelector("#projects-title");
 const projectsWrapperDiv = document.querySelector(".projects-wrapper");
+const researchersTitle = document.querySelector("#researchers-title");
 const researchersWrapperDiv = document.querySelector(".researchers-wrapper");
 
 const researchFieldInput = document.querySelector("#research-field-name");
@@ -113,6 +115,13 @@ const changeResearchersContent = () => {
 const setData = (responseProjects, responseResearchers) => {
   projects = responseProjects;
   researchers = responseResearchers;
+
+  projectsTitle.innerHTML =
+    projects?.length > 0 ? `Projects (${projects.length})` : "Projects";
+  researchersTitle.innerHTML =
+    researchers?.length > 0
+      ? `Researchers (${researchers.length})`
+      : "Researchers";
 
   // clean the lists' contents
   projectsWrapperDiv.innerHTML = "";
