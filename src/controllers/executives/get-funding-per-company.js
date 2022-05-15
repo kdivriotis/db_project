@@ -7,7 +7,7 @@ const { pool } = require("../../utils/db");
 module.exports.getFundingPerCompany = async (req, res) => {
   try {
     const executivesQuery = await pool.query(
-      `SELECT e.name AS executiveName, m.organizationName, SUM(p.budget) AS totalFundingAmount
+      `SELECT e.name AS executiveName, m.organizationName AS companyName, SUM(p.budget) AS totalFundingAmount
       FROM executive AS e
       JOIN project AS p
         ON p.executiveId = e.id
@@ -15,9 +15,9 @@ module.exports.getFundingPerCompany = async (req, res) => {
         ON p.id = m.projectId
       JOIN organization AS o
         ON o.name = m.organizationName
-      WHERE o.type = 'Company'
+      WHERE o.category = 'Company'
       GROUP BY e.name, m.organizationName
-      ORDER BY totalAmount DESC
+      ORDER BY totalFundingAmount DESC
       LIMIT 5`,
       []
     );
