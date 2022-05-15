@@ -21,7 +21,7 @@ module.exports.getNoDeliverablesProjects = async (req, res) => {
       )
       GROUP BY r.id
       HAVING projects >= ?
-      ORDER BY projects DESC`,
+      ORDER BY projects DESC, name ASC`,
       [parseInt(limit)]
     );
 
