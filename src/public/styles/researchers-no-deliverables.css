@@ -1,0 +1,88 @@
+.title {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  user-select: none;
+}
+
+.message {
+  color: black;
+  padding: 0;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  user-select: none;
+}
+
+.message.has-data {
+  display: none;
+}
+
+.message.has-error {
+  color: red;
+}
+
+.message.no-data {
+  color: yellow;
+}
+
+.researchers-wrapper {
+  margin: 1rem auto;
+  width: 70%;
+  max-height: calc(100vw-4rem);
+  overflow-y: auto;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+}
+
+.researchers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  word-wrap: break-word;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: gray;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.researchers-row > p {
+  text-align: center;
+}
+
+.researchers-row:hover {
+  background-color: lightslategray;
+}
+
+.researchers-row:hover > p {
+  color: black;
+}
+
+.researchers-row.head {
+  position: sticky;
+  top: 0;
+  background-color: black;
+  color: white;
+  z-index: 10;
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+}
+
+.researchers-row > p {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: gray;
+}
+
+.researchers-row > h4 {
+  border: 1px solid gray;
+  padding: 1rem 0.3rem;
+  color: white;
+}
