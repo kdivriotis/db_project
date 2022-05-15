@@ -3,9 +3,11 @@ const baseUrl = "http://localhost";
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".researchers-wrapper");
+const limitInput = document.querySelector("#projects-limit");
 
 let researchers = null;
 let limit = 5;
+limitInput.value = 5;
 
 /**
  * Change wrapper div's content
@@ -89,5 +91,15 @@ const getProjectResearchers = async () => {
     setResearchersData();
   }
 };
+
+limitInput.addEventListener("change", (event) => {
+  let value = event.target.value;
+  if (value > 9) limitInput.value = 9;
+  if (value < 1) limitInput.value = 1;
+
+  limit = limitInput.value;
+  limitInput.size = 1;
+  getProjectResearchers();
+});
 
 getProjectResearchers();

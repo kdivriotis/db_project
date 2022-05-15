@@ -70,8 +70,18 @@
       <!-- Page contents -->
       <section class="container">
         <h2 class="title">
-          Researchers working on more than <span>5</span> projects with no
-          deliverables
+          Researchers working on at least
+          <span
+            ><input
+              id="projects-limit"
+              type="number"
+              value="5"
+              min="1"
+              max="9"
+              size="1"
+              oninput="this.size = this.value.length"
+          /></span>
+          projects with no deliverables
         </h2>
         <p class="message"></p>
         <div class="researchers-wrapper"></div>
