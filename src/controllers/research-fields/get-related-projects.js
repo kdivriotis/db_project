@@ -20,7 +20,8 @@ module.exports.getRelatedProjects = async (req, res) => {
           SELECT rt.projectId
           FROM related_to AS rt
           WHERE rt.research_fieldName = ?
-      ) AND p.duration IS NULL;`,
+      ) AND p.duration IS NULL
+      ORDER BY startDate`,
       [name]
     );
 
@@ -34,15 +35,16 @@ module.exports.getRelatedProjects = async (req, res) => {
     }
 
     const researchersQuery = await pool.query(
-      `SELECT DISTINCT(r.id), r.name, r.surname, r.birth_date AS birthDate
+      `SELECT r.id, r.name, r.surname, r.birth_date AS birthDate
         FROM researcher AS r
         WHERE r.id IN (
             SELECT pr.researcherId
             FROM project_researchers AS pr
             WHERE pr.projectId IN (?)
         )
+        GROUP BY r.id
         ORDER BY r.name`,
-      [projects.map((project) => project.id).join(",")]
+      [projects.map((project) => project.id)]
     );
 
     const researchers = researchersQuery[0];
