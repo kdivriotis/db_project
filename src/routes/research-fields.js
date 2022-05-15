@@ -14,6 +14,6 @@ const router = express.Router();
 
 router.get("/", getResearchFields);
 router.get("/related-projects/:name", getRelatedProjects);
-router.get("/interdisciplinary", getInterdisciplinaryFields);
+router.get("/interdisciplinary/:limit?", getInterdisciplinaryFields);
 
 module.exports = router;

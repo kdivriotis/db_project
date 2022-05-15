@@ -2,9 +2,12 @@ const { pool } = require("../../utils/db");
 
 /**
  * Get top 3 most frequent pairs of fields research fields appearing in different interdisciplinary projects
- * @returns Message in case of failure, otherwise array of top 3 pairs { field1, field2, frequency }
+ * @returns Message in case of failure, otherwise array of top 'limit' (default is 3) pairs { field1, field2, frequency }
  */
 module.exports.getInterdisciplinaryFields = async (req, res) => {
+  let { limit } = req.params;
+  if (!limit || parseInt(limit) < 1) limit = 3;
+
   try {
     const interdisciplinaryFieldsQuery = await pool.query(
       `SELECT field1, field2, frequency
@@ -16,8 +19,8 @@ module.exports.getInterdisciplinaryFields = async (req, res) => {
           GROUP BY rt1.research_fieldName, rt2.research_fieldName
       ) interdisciplinary_fields
       ORDER BY frequency DESC
-      LIMIT 3`,
-      []
+      LIMIT ?`,
+      [parseInt(limit)]
     );
 
     const interdisciplinaryFields = interdisciplinaryFieldsQuery[0];
@@ -26,6 +29,7 @@ module.exports.getInterdisciplinaryFields = async (req, res) => {
       interdisciplinaryFields,
     });
   } catch (error) {
+    console.log(error);
     // On database failure, return
     return res
       .status(500)

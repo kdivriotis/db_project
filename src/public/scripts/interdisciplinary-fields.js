@@ -5,6 +5,7 @@ const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".research-fields-wrapper");
 
 let interdisciplinaryFields = null;
+let limit = 3;
 
 /**
  * Change wrapper div's content
@@ -86,12 +87,11 @@ const getRelatedProjectsAndResearchers = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/research-fields/interdisciplinary`;
+    const requestUrl = `${baseUrl}/api/research-fields/interdisciplinary/${limit}`;
     const response = await fetch(requestUrl);
     const { interdisciplinaryFields } = await response.json();
     setFieldsData(interdisciplinaryFields);
   } catch (e) {
-    console.log(e);
     setFieldsData();
   }
 };
