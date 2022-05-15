@@ -15,7 +15,7 @@ module.exports.getNoDeliverablesProjects = async (req, res) => {
       JOIN project_researchers AS pr
         ON r.id = pr.researcherId
       WHERE NOT EXISTS (
-        SELECT *
+        SELECT d.projectId
           FROM deliverable AS d
           WHERE d.projectId = pr.projectId
       )
