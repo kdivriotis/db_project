@@ -20,6 +20,11 @@ router.get(/^\/projects\/researchers(\.html)?/, (req, res) => {
   );
 });
 
+// Project's information page (projects.html)
+router.get(/^\/projects\/information(\.html)?/, (req, res) => {
+  return res.sendFile(path.join(__dirname, "..", "views", "project-info.html"));
+});
+
 // Projects per Researcher page (projects-per-researcher.html)
 router.get(/^\/researchers\/projects(\.html)?$/, (req, res) => {
   return res.sendFile(
