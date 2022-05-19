@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EL.ID.E.K</title>
+    <link rel="icon" href="/icons/favicon.ico?v=2" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/project-info.css" />
+    <link rel="stylesheet" href="/styles/fontawesome/css/all.min.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <!-- Header -->
+        <div class="sidebar-header">
+          <img src="/images/logo.png" alt="logo" />
+          <h1>Databases 2022</h1>
+        </div>
+        <!-- Navigations -->
+        <div class="sidebar-nav">
+          <div class="sidebar-nav-item">
+            <a href="/index">Programs</a>
+          </div>
+          <div class="sidebar-nav-item active">
+            <a href="#">Projects</a>
+          </div>
+          <div class="sidebar-nav-sub-item">
+            <a href="/projects">All Projects</a>
+          </div>
+          <div class="sidebar-nav-sub-item active">
+            <a href="/projects/information">Detailed information</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/researchers/projects">Researchers</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/research-fields">Research Fields</a>
+          </div>
+          <div class="sidebar-nav-item">
+            <a href="/executives/funding-per-company">Executives</a>
+          </div>
+        </div>
+      </nav>
+      <!-- Page contents -->
+      <section class="container">
+        <h2 class="title">Project Detailed Information</h2>
+        <form class="filter-form" onsubmit="return false;">
+          <!-- Select project -->
+          <div class="field">
+            <label for="project-title">Project Title</label>
+            <select id="project-title"></select>
+          </div>
+        </form>
+        <p class="message"></p>
+        <div class="project-info-wrapper"></div>
+        <div class="project-details-wrapper"></div>
+        <div class="wrapper"></div>
+        <div class="deliverables-wrapper"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/scripts/project-info.js" async defer></script>
+  </body>
+</html>
