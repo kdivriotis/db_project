@@ -14,6 +14,15 @@ let projects = null;
 let researchers = null;
 
 /**
+ * Handle click on a project
+ * @param {number} id
+ */
+const navigateToProject = (id) => {
+  if (!id) return;
+  window.location.href = `${baseUrl}/projects/information?id=${id}`;
+};
+
+/**
  * Change projects div's content
  */
 const changeProjectsContent = () => {
@@ -43,6 +52,7 @@ const changeProjectsContent = () => {
   for (let project of projects) {
     const projectRow = document.createElement("div");
     projectRow.className = "projects-row";
+    projectRow.setAttribute("tooltip", "Click to view project's information");
     const projectTitle = document.createElement("p");
     projectTitle.innerHTML = project.title;
     const projectBudget = document.createElement("p");
@@ -57,6 +67,7 @@ const changeProjectsContent = () => {
     projectRow.appendChild(projectTitle);
     projectRow.appendChild(projectBudget);
     projectRow.appendChild(projectStartDate);
+    projectRow.addEventListener("click", () => navigateToProject(project.id));
     projectsWrapperDiv.appendChild(projectRow);
   }
 };

@@ -67,10 +67,6 @@ body {
   z-index: 1;
 }
 
-.research-fields-row {
-  cursor: pointer;
-}
-
 .research-fields-row:hover {
   background-color: lightslategray;
 }

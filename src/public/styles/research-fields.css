@@ -146,12 +146,23 @@ body {
   color: white;
 }
 
-.order-asc::after {
-  content: "▲";
-  margin-left: 0.2rem;
+.projects-row[tooltip]::after {
+  content: attr(tooltip);
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  background: black;
+  color: white;
+  transform: scale(0);
+  transition: transform 250ms ease-in-out;
+  padding: 0.7rem;
+  border-radius: 1rem;
 }
 
-.order-desc::after {
-  content: "▼";
-  margin-left: 0.2rem;
+.projects-row[tooltip]:hover::after {
+  transform: scale(1);
 }

@@ -3,9 +3,9 @@ const path = require("path");
 
 const router = express.Router();
 
-// Home page (index.html)
-router.get(/^\/(index(\.html)?)?$/, (req, res) => {
-  return res.sendFile(path.join(__dirname, "..", "views", "index.html"));
+// Home page (programs.html)
+router.get(/^\/(programs(\.html)?)?$/, (req, res) => {
+  return res.sendFile(path.join(__dirname, "..", "views", "programs.html"));
 });
 
 // Projects page (projects.html)
