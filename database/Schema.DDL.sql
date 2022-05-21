@@ -129,11 +129,11 @@ CREATE TABLE `project` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `title_UNIQUE` (`title`),
   KEY `has_research_manager` (`researchManagerId`),
-  KEY `manages` (`executiveId`),
-  KEY `sponsors` (`programId`),
+  KEY `has_executive_manager` (`executiveId`),
+  KEY `has_sponsoring_program` (`programId`),
   CONSTRAINT `has_research_manager` FOREIGN KEY (`researchManagerId`) REFERENCES `researcher` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `manages` FOREIGN KEY (`executiveId`) REFERENCES `executive` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `sponsors` FOREIGN KEY (`programId`) REFERENCES `program` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `has_executive_manager` FOREIGN KEY (`executiveId`) REFERENCES `executive` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `has_sponsoring_program` FOREIGN KEY (`programId`) REFERENCES `program` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `limit_end_date` CHECK (
     (
       (
@@ -311,15 +311,15 @@ DELIMITER $
 
 $
 
-CREATE DEFINER = `root` @`localhost` FUNCTION `rating_researcher_in_organization`(projectId INT, researcherId INT) RETURNS int READS SQL DATA BEGIN RETURN EXISTS (
+CREATE DEFINER = `root` @`localhost` FUNCTION `rating_researcher_in_organization`(newProjectId INT, newResearcherId INT) RETURNS int READS SQL DATA BEGIN RETURN EXISTS (
   SELECT
     m.organizationName
   FROM
     managed_by AS m
-    JOIN works_for AS w ON researcherId = w.researcherId
+    JOIN works_for AS w ON newResearcherId = w.researcherId
     AND m.organizationName = w.organizationName
   WHERE
-    m.projectId = projectId
+    m.projectId = newProjectId
 );
 
 END;
