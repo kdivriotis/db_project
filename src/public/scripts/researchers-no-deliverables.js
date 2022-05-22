@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".researchers-wrapper");
@@ -83,7 +81,7 @@ const getProjectResearchers = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/researchers/no-deliverables-projects/${limit}`;
+    const requestUrl = `${window.location.origin}/api/researchers/no-deliverables-projects/${limit}`;
     const response = await fetch(requestUrl);
     const { researchers } = await response.json();
     setResearchersData(researchers);

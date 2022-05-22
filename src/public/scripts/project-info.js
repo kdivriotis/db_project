@@ -1,4 +1,3 @@
-const baseUrl = "http://localhost";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
@@ -340,7 +339,7 @@ const getProjectInformation = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/projects/information/${id}`;
+    const requestUrl = `${window.location.origin}/api/projects/information/${id}`;
     const response = await fetch(requestUrl);
     const { projectInformation, projectDeliverables } = await response.json();
     setProjectInformationData(projectInformation, projectDeliverables);
@@ -355,7 +354,7 @@ const getProjectInformation = async () => {
  */
 const getProjects = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/projects/titles`);
+    const response = await fetch(`${window.location.origin}/api/projects/titles`);
     const { projects } = await response.json();
     for (let project of projects) {
       const opt = document.createElement("option");

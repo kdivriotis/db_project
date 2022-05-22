@@ -1,4 +1,3 @@
-const baseUrl = "http://localhost";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
@@ -101,7 +100,7 @@ const getProjectResearchers = async (id) => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/projects/researchers/${id}`;
+    const requestUrl = `${window.location.origin}/api/projects/researchers/${id}`;
     const response = await fetch(requestUrl);
     const { projectName, projectResearchers } = await response.json();
     setTitle(`Researchers working on project ${projectName}`);

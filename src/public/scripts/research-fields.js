@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".wrapper");
@@ -19,7 +17,7 @@ let researchers = null;
  */
 const navigateToProject = (id) => {
   if (!id) return;
-  window.location.href = `${baseUrl}/projects/information?id=${id}`;
+  window.location.href = `${window.location.origin}/projects/information?id=${id}`;
 };
 
 /**
@@ -172,7 +170,7 @@ const getRelatedProjectsAndResearchers = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/research-fields/related-projects/${fieldName}`;
+    const requestUrl = `${window.location.origin}/api/research-fields/related-projects/${fieldName}`;
     const response = await fetch(requestUrl);
     const { projects, researchers } = await response.json();
     setData(projects, researchers);
@@ -186,7 +184,7 @@ const getRelatedProjectsAndResearchers = async () => {
  */
 const getResearchFields = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/research-fields`);
+    const response = await fetch(`${window.location.origin}/api/research-fields`);
     const { researchFields } = await response.json();
     for (let researchField of researchFields) {
       const opt = document.createElement("option");

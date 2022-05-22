@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".projects-wrapper");
@@ -29,7 +27,7 @@ const setOrderMethod = (orderSelection) => {
  */
 const navigateToProject = (id) => {
   if (!id) return;
-  window.location.href = `${baseUrl}/projects/researchers?id=${id}`;
+  window.location.href = `${window.location.origin}/projects/researchers?id=${id}`;
 };
 
 /**
@@ -202,7 +200,7 @@ const getProjects = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/projects${
+    const requestUrl = `${window.location.origin}/api/projects${
       hasQueryParameters ? "?" + new URLSearchParams(queryParameters) : ""
     }`;
     const response = await fetch(requestUrl);
@@ -218,7 +216,7 @@ const getProjects = async () => {
  */
 const getExecutives = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/executives`);
+    const response = await fetch(`${window.location.origin}/api/executives`);
     const { executives } = await response.json();
     for (let executive of executives) {
       const opt = document.createElement("option");

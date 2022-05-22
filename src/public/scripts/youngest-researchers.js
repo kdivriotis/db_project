@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".researchers-wrapper");
@@ -85,7 +83,7 @@ const getProjectResearchers = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/researchers/youngest`;
+    const requestUrl = `${window.location.origin}/api/researchers/youngest`;
     const response = await fetch(requestUrl);
     const { youngestResearchers } = await response.json();
     setYoungestResearchersData(youngestResearchers);

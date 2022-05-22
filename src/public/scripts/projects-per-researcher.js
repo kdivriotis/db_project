@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".wrapper");
@@ -172,7 +170,7 @@ const getResearcherProjects = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/researchers/projects/${researcherId}`;
+    const requestUrl = `${window.location.origin}/api/researchers/projects/${researcherId}`;
     const response = await fetch(requestUrl);
     const { researcherProjects } = await response.json();
     setData(researcherProjects);
@@ -186,7 +184,7 @@ const getResearcherProjects = async () => {
  */
 const getResearchers = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/researchers`);
+    const response = await fetch(`${window.location.origin}/api/researchers`);
     const { researchers } = await response.json();
     for (let researcher of researchers) {
       const opt = document.createElement("option");

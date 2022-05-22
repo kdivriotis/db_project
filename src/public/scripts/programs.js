@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".programs-wrapper");
@@ -84,7 +82,7 @@ const getPrograms = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const response = await fetch(`${baseUrl}/api/programs`);
+    const response = await fetch(`${window.location.origin}/api/programs`);
     const { programs } = await response.json();
     setProgramsData(programs);
   } catch (e) {

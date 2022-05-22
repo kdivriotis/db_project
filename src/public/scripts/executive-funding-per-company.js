@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".executives-wrapper");
@@ -86,7 +84,7 @@ const getTop5Executives = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/executives/funding-per-company`;
+    const requestUrl = `${window.location.origin}/api/executives/funding-per-company`;
     const response = await fetch(requestUrl);
     const { executives } = await response.json();
     setExecutivesData(executives);

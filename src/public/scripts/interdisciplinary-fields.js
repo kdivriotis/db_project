@@ -1,5 +1,3 @@
-const baseUrl = "http://localhost";
-
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".research-fields-wrapper");
@@ -87,7 +85,7 @@ const getRelatedProjectsAndResearchers = async () => {
   try {
     messagePar.className = "message no-data";
     messagePar.textContent = "Loading...";
-    const requestUrl = `${baseUrl}/api/research-fields/interdisciplinary/${limit}`;
+    const requestUrl = `${window.location.origin}/api/research-fields/interdisciplinary/${limit}`;
     const response = await fetch(requestUrl);
     const { interdisciplinaryFields } = await response.json();
     setFieldsData(interdisciplinaryFields);
