@@ -10,23 +10,6 @@ USE `db_project`;
 -- Server version	8.0.27
 
 /*!50503 SET character_set_client = utf8mb4 */
-;
-
---
--- Table structure for table `deliverable`
---
-DROP TABLE IF EXISTS `deliverable`;
-
-
-CREATE TABLE `deliverable` (
-  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου το οποίο αφορά το παραδοτέο',
-  `title` varchar(100) NOT NULL COMMENT 'Τίτλος παραδοτέου',
-  `description` varchar(255) NOT NULL COMMENT 'Περιγραφή παραδοτέου',
-  `delivery_date` date DEFAULT NULL COMMENT 'Ημερομηνία παράδοσης',
-  PRIMARY KEY (`title`, `projectId`),
-  KEY `has_deliverables` (`projectId`),
-  CONSTRAINT `has_deliverables` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Παραδοτέα έργων';
 
 --
 -- Table structure for table `executive`
@@ -41,18 +24,17 @@ CREATE TABLE `executive` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 16 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Στελέχη ΕΛ.ΙΔ.Ε.Κ.';
 
 --
--- Table structure for table `managed_by`
+-- Table structure for table `program`
 --
-DROP TABLE IF EXISTS `managed_by`;
+DROP TABLE IF EXISTS `program`;
 
-CREATE TABLE `managed_by` (
-  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου το οποίο συμμετέχει στη σχέση',
-  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα του οργανισμού που διαχειρίζεται το έργο',
-  UNIQUE KEY `projectId_UNIQUE` (`projectId`),
-  KEY `managing_organization` (`organizationName`),
-  CONSTRAINT `managed_project` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`),
-  CONSTRAINT `managing_organization` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σχέση διαχείρισης μεταξύ έργου και οργανισμού';
+CREATE TABLE `program` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Μοναδικό αναγνωριστικό του προγράμματος',
+  `name` varchar(100) NOT NULL COMMENT 'Όνομα προγράμματος',
+  `address` varchar(255) NOT NULL COMMENT 'Διεύθυνση',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE = InnoDB AUTO_INCREMENT = 41 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Προγράμματα που χρηματοδοτούν έργα';
 
 --
 -- Table structure for table `organization`
@@ -68,6 +50,7 @@ CREATE TABLE `organization` (
   `city` varchar(100) NOT NULL COMMENT 'Διεύθυνση οργανισμού: Πόλη',
   `category` varchar(20) NOT NULL COMMENT 'Κατηγορία: Ερευνητικό Κέντρο(Research Center), Πανεπιστήμιο (University) ή Εταιρεία (Company)',
   PRIMARY KEY (`name`),
+  KEY `idx_category` (`category`),
   CONSTRAINT `check_category` CHECK (
     (
       `category` in (
@@ -94,17 +77,46 @@ CREATE TABLE `phone_number` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Τηλεφωνικοί αριθμοί (τουλάχιστον 1 για κάθε οργανισμό)';
 
 --
--- Table structure for table `program`
+-- Table structure for table `researcher`
 --
-DROP TABLE IF EXISTS `program`;
+DROP TABLE IF EXISTS `researcher`;
 
-CREATE TABLE `program` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Μοναδικό αναγνωριστικό του προγράμματος',
-  `name` varchar(100) NOT NULL COMMENT 'Όνομα προγράμματος',
-  `address` varchar(255) NOT NULL COMMENT 'Διεύθυνση',
+CREATE TABLE `researcher` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Μοναδικό αναγνωριστικό του ερευνητή',
+  `name` varchar(100) NOT NULL COMMENT 'Όνομα',
+  `surname` varchar(100) NOT NULL COMMENT 'Επίθετο',
+  `gender` varchar(10) NOT NULL COMMENT 'Φύλο (male ή female)',
+  `birth_date` date NOT NULL COMMENT 'Ημερομηνία Γέννησης',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE = InnoDB AUTO_INCREMENT = 41 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Προγράμματα που χρηματοδοτούν έργα';
+  KEY `idx_name` (`name`),
+  KEY `idx_surname` (`surname`),
+  CONSTRAINT `check_gender` CHECK ((`gender` in (_utf8mb4 'male', _utf8mb4 'female')))
+) ENGINE = InnoDB AUTO_INCREMENT = 111 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Ερευνητές που εργάζονται σε έργα';
+
+--
+-- Table structure for table `works_for`
+--
+DROP TABLE IF EXISTS `works_for`;
+
+CREATE TABLE `works_for` (
+  `researcherId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του εργαζόμενου ερευνητή',
+  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα του οργανισμού στον οποίο εργάζεται',
+  `employment_date` date NOT NULL COMMENT 'Ημερομηνία έναρξης της εργασίας',
+  PRIMARY KEY (`researcherId`),
+  KEY `employing_organization` (`organizationName`),
+  CONSTRAINT `employed_researcher` FOREIGN KEY (`researcherId`) REFERENCES `researcher` (`id`),
+  CONSTRAINT `employing_organization` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Υπαλληλική σχέση ερευνητή/οργανισμού';
+
+--
+-- Table structure for table `research_field`
+--
+DROP TABLE IF EXISTS `research_field`;
+
+CREATE TABLE `research_field` (
+  `name` varchar(100) NOT NULL COMMENT 'Όνομα (μοναδικό) του επιστημονικού πεδίου',
+  PRIMARY KEY (`name`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Επιστημονικά πεδία';
 
 --
 -- Table structure for table `project`
@@ -131,6 +143,9 @@ CREATE TABLE `project` (
   KEY `has_research_manager` (`researchManagerId`),
   KEY `has_executive_manager` (`executiveId`),
   KEY `has_sponsoring_program` (`programId`),
+  KEY `idx_start_date` (`start_date`),
+  KEY `idx_duration` (`duration`),
+  KEY `idx_title` (`title`),
   CONSTRAINT `has_research_manager` FOREIGN KEY (`researchManagerId`) REFERENCES `researcher` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `has_executive_manager` FOREIGN KEY (`executiveId`) REFERENCES `executive` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `has_sponsoring_program` FOREIGN KEY (`programId`) REFERENCES `program` (`id`) ON UPDATE CASCADE,
@@ -143,6 +158,66 @@ CREATE TABLE `project` (
     )
   )
 ) ENGINE = InnoDB AUTO_INCREMENT = 121 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Έργα/Επιχορηγήσεις';
+
+--
+-- Table structure for table `managed_by`
+--
+DROP TABLE IF EXISTS `managed_by`;
+
+CREATE TABLE `managed_by` (
+  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου το οποίο συμμετέχει στη σχέση',
+  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα του οργανισμού που διαχειρίζεται το έργο',
+  UNIQUE KEY `projectId_UNIQUE` (`projectId`),
+  KEY `managing_organization` (`organizationName`),
+  CONSTRAINT `managed_project` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`),
+  CONSTRAINT `managing_organization` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σχέση διαχείρισης μεταξύ έργου και οργανισμού';
+
+--
+-- Table structure for table `related_to`
+--
+DROP TABLE IF EXISTS `related_to`;
+
+CREATE TABLE `related_to` (
+  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου',
+  `research_fieldName` varchar(100) NOT NULL COMMENT 'Όνομα του επιστημονικού πεδίου με το οποίο συνδέεται',
+  PRIMARY KEY (`projectId`, `research_fieldName`),
+  KEY `field_to_project` (`research_fieldName`),
+  CONSTRAINT `field_to_project` FOREIGN KEY (`research_fieldName`) REFERENCES `research_field` (`name`),
+  CONSTRAINT `project_fields` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σύνδεση έργου με επιστημονικά πεδία';
+
+--
+-- Table structure for table `deliverable`
+--
+DROP TABLE IF EXISTS `deliverable`;
+
+
+CREATE TABLE `deliverable` (
+  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου το οποίο αφορά το παραδοτέο',
+  `title` varchar(100) NOT NULL COMMENT 'Τίτλος παραδοτέου',
+  `description` varchar(255) NOT NULL COMMENT 'Περιγραφή παραδοτέου',
+  `delivery_date` date DEFAULT NULL COMMENT 'Ημερομηνία παράδοσης',
+  PRIMARY KEY (`title`, `projectId`),
+  KEY `has_deliverables` (`projectId`),
+  CONSTRAINT `has_deliverables` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Παραδοτέα έργων';
+
+--
+-- Table structure for table `project_researchers`
+--
+DROP TABLE IF EXISTS `project_researchers`;
+
+CREATE TABLE `project_researchers` (
+  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου',
+  `researcherId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του ερευνητή που εργάζεται στο έργο',
+  PRIMARY KEY (`projectId`, `researcherId`),
+  KEY `works_on` (`researcherId`)
+  /*!80000 INVISIBLE */
+,
+  CONSTRAINT `has_researchers` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`),
+  CONSTRAINT `works_on` FOREIGN KEY (`researcherId`) REFERENCES `researcher` (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Ερευνητές σε κάθε έργο';
 
 --
 -- Table structure for table `project_rating`
@@ -167,33 +242,6 @@ CREATE TABLE `project_rating` (
   )
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Αξιολογήσεις έργων από ερευνητές';
 
-/*!40101 SET character_set_client = @saved_cs_client */
-;
-
-/*!50003 SET @saved_cs_client      = @@character_set_client */
-;
-
-/*!50003 SET @saved_cs_results     = @@character_set_results */
-;
-
-/*!50003 SET @saved_col_connection = @@collation_connection */
-;
-
-/*!50003 SET character_set_client  = utf8mb4 */
-;
-
-/*!50003 SET character_set_results = utf8mb4 */
-;
-
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */
-;
-
-/*!50003 SET @saved_sql_mode       = @@sql_mode */
-;
-
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */
-;
-
 /*!50003 CREATE*/
 /*!50017 DEFINER=`root`@`localhost`*/
 /*!50003 TRIGGER `check_researcher_not_in_organization` BEFORE INSERT ON `project_rating` FOR EACH ROW BEGIN
@@ -203,76 +251,6 @@ CREATE TABLE `project_rating` (
  END */
 ;
 
-
---
--- Table structure for table `project_researchers`
---
-DROP TABLE IF EXISTS `project_researchers`;
-
-CREATE TABLE `project_researchers` (
-  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου',
-  `researcherId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του ερευνητή που εργάζεται στο έργο',
-  PRIMARY KEY (`projectId`, `researcherId`),
-  KEY `works_on` (`researcherId`)
-  /*!80000 INVISIBLE */
-,
-  CONSTRAINT `has_researchers` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`),
-  CONSTRAINT `works_on` FOREIGN KEY (`researcherId`) REFERENCES `researcher` (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Ερευνητές σε κάθε έργο';
-
---
--- Table structure for table `related_to`
---
-DROP TABLE IF EXISTS `related_to`;
-
-CREATE TABLE `related_to` (
-  `projectId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του έργου',
-  `research_fieldName` varchar(100) NOT NULL COMMENT 'Όνομα του επιστημονικού πεδίου με το οποίο συνδέεται',
-  PRIMARY KEY (`projectId`, `research_fieldName`),
-  KEY `field_to_project` (`research_fieldName`),
-  CONSTRAINT `field_to_project` FOREIGN KEY (`research_fieldName`) REFERENCES `research_field` (`name`),
-  CONSTRAINT `project_fields` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σύνδεση έργου με επιστημονικά πεδία';
-
---
--- Table structure for table `research_field`
---
-DROP TABLE IF EXISTS `research_field`;
-
-CREATE TABLE `research_field` (
-  `name` varchar(100) NOT NULL COMMENT 'Όνομα (μοναδικό) του επιστημονικού πεδίου',
-  PRIMARY KEY (`name`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Επιστημονικά πεδία';
-
---
--- Table structure for table `researcher`
---
-DROP TABLE IF EXISTS `researcher`;
-
-CREATE TABLE `researcher` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Μοναδικό αναγνωριστικό του ερευνητή',
-  `name` varchar(100) NOT NULL COMMENT 'Όνομα',
-  `surname` varchar(100) NOT NULL COMMENT 'Επίθετο',
-  `gender` varchar(10) NOT NULL COMMENT 'Φύλο (male ή female)',
-  `birth_date` date NOT NULL COMMENT 'Ημερομηνία Γέννησης',
-  PRIMARY KEY (`id`),
-  CONSTRAINT `check_gender` CHECK ((`gender` in (_utf8mb4 'male', _utf8mb4 'female')))
-) ENGINE = InnoDB AUTO_INCREMENT = 111 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Ερευνητές που εργάζονται σε έργα';
-
---
--- Table structure for table `works_for`
---
-DROP TABLE IF EXISTS `works_for`;
-
-CREATE TABLE `works_for` (
-  `researcherId` int NOT NULL COMMENT 'Μοναδικό αναγνωριστικό του εργαζόμενου ερευνητή',
-  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα του οργανισμού στον οποίο εργάζεται',
-  `employment_date` date NOT NULL COMMENT 'Ημερομηνία έναρξης της εργασίας',
-  PRIMARY KEY (`researcherId`),
-  KEY `employing_organization` (`organizationName`),
-  CONSTRAINT `employed_researcher` FOREIGN KEY (`researcherId`) REFERENCES `researcher` (`id`),
-  CONSTRAINT `employing_organization` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Υπαλληλική σχέση ερευνητή/οργανισμού';
 
 --
 -- Dumping events for database 'db_project'
