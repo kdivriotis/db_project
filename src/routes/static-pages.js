@@ -14,14 +14,14 @@ router.get(/^\/projects(\.html)?$/, (req, res) => {
 });
 
 // Researchers per Project page (project-researchers.html)
-router.get(/^\/projects\/researchers(\.html)?/, (req, res) => {
+router.get(/^\/projects\/researchers(\.html)?(\?id=[0-9]+)?$/, (req, res) => {
   return res.sendFile(
     path.join(__dirname, "..", "views", "project-researchers.html")
   );
 });
 
 // Project's information page (projects.html)
-router.get(/^\/projects\/information(\.html)?/, (req, res) => {
+router.get(/^\/projects\/information(\.html)?(\?id=[0-9]+)?$/, (req, res) => {
   return res.sendFile(path.join(__dirname, "..", "views", "project-info.html"));
 });
 
@@ -65,6 +65,11 @@ router.get(/^\/executives\/funding-per-company(\.html)?$/, (req, res) => {
   return res.sendFile(
     path.join(__dirname, "..", "views", "executive-funding-per-company.html")
   );
+});
+
+// Not found (404.html)
+router.get(/^\/.*/, (req, res) => {
+  return res.sendFile(path.join(__dirname, "..", "views", "404.html"));
 });
 
 module.exports = router;
