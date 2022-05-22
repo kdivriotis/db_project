@@ -14,6 +14,15 @@ body {
   user-select: none;
 }
 
+#fields-limit {
+  font-size: 2rem;
+  font-style: italic;
+  border: none;
+  stroke-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
 .description {
   margin: 1rem auto;
   padding: 0;

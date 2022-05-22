@@ -1,9 +1,11 @@
 const messagePar = document.querySelector(".message");
 const containerDiv = document.querySelector(".container");
 const wrapperDiv = document.querySelector(".research-fields-wrapper");
+const limitInput = document.querySelector("#fields-limit");
 
 let interdisciplinaryFields = null;
 let limit = 3;
+limitInput.value = 3;
 
 /**
  * Change wrapper div's content
@@ -28,12 +30,11 @@ const changeInterdisciplinaryFieldsContent = () => {
   wrapperDiv.appendChild(fieldsHeaderRow);
 
   // create list of interdisciplinary fields
-  let index = 1;
   for (let pair of interdisciplinaryFields) {
     const fieldRow = document.createElement("div");
     fieldRow.className = "research-fields-row";
     const fieldNumber = document.createElement("p");
-    fieldNumber.innerHTML = index++;
+    fieldNumber.innerHTML = pair.fieldRank;
     const fieldName1 = document.createElement("p");
     fieldName1.innerHTML = pair.field1;
     const fieldName2 = document.createElement("p");
@@ -93,5 +94,15 @@ const getRelatedProjectsAndResearchers = async () => {
     setFieldsData();
   }
 };
+
+limitInput.addEventListener("change", (event) => {
+  let value = event.target.value;
+  if (value > 100) limitInput.value = 100;
+  if (value < 1) limitInput.value = 1;
+
+  limit = limitInput.value;
+  limitInput.size = 1;
+  getRelatedProjectsAndResearchers();
+});
 
 getRelatedProjectsAndResearchers();
