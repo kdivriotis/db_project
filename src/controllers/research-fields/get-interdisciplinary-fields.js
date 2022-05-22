@@ -10,16 +10,19 @@ module.exports.getInterdisciplinaryFields = async (req, res) => {
 
   try {
     const interdisciplinaryFieldsQuery = await pool.query(
-      `SELECT field1, field2, frequency
+      `SELECT fieldRank, field1, field2, frequency
       FROM (
+        SELECT RANK() OVER (ORDER BY frequency DESC) AS fieldRank, field1, field2, frequency
+        FROM (
           SELECT rt1.research_fieldName AS field1, rt2.research_fieldName AS field2, COUNT(*) AS frequency
           FROM related_to rt1
           INNER JOIN related_to rt2
           ON rt1.research_fieldName < rt2.research_fieldName AND rt1.projectId = rt2.projectId
           GROUP BY rt1.research_fieldName, rt2.research_fieldName
-      ) interdisciplinary_fields
-      ORDER BY frequency DESC
-      LIMIT ?`,
+        ) interdisciplinary_fields
+      ) frequencies
+      WHERE fieldRank <= ?
+      ORDER BY fieldRank ASC, field1 ASC`,
       [parseInt(limit)]
     );
 
