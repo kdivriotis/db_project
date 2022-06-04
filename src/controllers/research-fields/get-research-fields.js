@@ -13,7 +13,7 @@ module.exports.getResearchFields = async (req, res) => {
       ON rf.name = rt.research_fieldName
       JOIN project AS p
       ON rt.projectId = p.id
-      WHERE p.duration IS NULL
+      WHERE p.duration IS NULL AND (TO_DAYS(NOW())-TO_DAYS(p.start_date))/365 <= 1
       GROUP BY rt.research_fieldName
       ORDER BY frequency DESC, name ASC`,
       []

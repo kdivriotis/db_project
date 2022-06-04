@@ -20,7 +20,7 @@ module.exports.getRelatedProjects = async (req, res) => {
           SELECT rt.projectId
           FROM related_to AS rt
           WHERE rt.research_fieldName = ?
-      ) AND p.duration IS NULL
+      ) AND p.duration IS NULL AND (TO_DAYS(NOW())-TO_DAYS(p.start_date))/365 <= 1
       ORDER BY startDate`,
       [name]
     );
