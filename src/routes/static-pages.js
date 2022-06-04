@@ -67,6 +67,13 @@ router.get(/^\/executives\/funding-per-company(\.html)?$/, (req, res) => {
   );
 });
 
+// Organizations with same number of projects over two years (organization-projects.html)
+router.get(/^\/organizations\/same-projects(\.html)?$/, (req, res) => {
+  return res.sendFile(
+    path.join(__dirname, "..", "views", "organization-projects.html")
+  );
+});
+
 // Not found (404.html)
 router.get(/^\/.*/, (req, res) => {
   return res.sendFile(path.join(__dirname, "..", "views", "404.html"));
