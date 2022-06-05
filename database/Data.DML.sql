@@ -1,17 +1,29 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: db_project
+-- Host: 127.0.0.1    Database: db_project
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `company`
+--
+
+LOCK TABLES `company` WRITE;
+/*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES ('Bednar Ltd',120000.00),('Deckow-Smitham',120000.00),('Dooley-Feil',120000.00),('Hahn-Smith',120000.00),('Jacobi Group',120000.00),('Jacobi Ltd',120000.00),('Kreiger-Kozey',120000.00);
+/*!40000 ALTER TABLE `company` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping data for table `deliverable`
@@ -49,7 +61,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `organization` WRITE;
 /*!40000 ALTER TABLE `organization` DISABLE KEYS */;
-INSERT INTO `organization` VALUES ('Abernathy-Cremin','AC','Greta Mountain',371,'18498','Lemkeshire','University'),('Adams, Weissnat and Roob','AWR','Kunze Viaduct',65,'86973','New Isaimouth','Research Center'),('Barton Inc','Barton','Murazik Curve',192,'44932','West Eviemouth','Research Center'),('Bednar Ltd','Bednar','D\'Amore Pine',356,'98352','Wehnerborough','Company'),('Bergstrom-Huels','Ber.Hu.','Orrin Trace',74,'90348','Ziemeport','Research Center'),('Brekke LLC','Brekke','Wilkinson Landing',93,'33244','Port Jeraldburgh','University'),('Cummings, Medhurst and Brown','CMB','Veum Trail',490,'67262','Ondrickamouth','University'),('Deckow-Smitham','DS','Ebert Stream',111,'65844','Romagueraview','Company'),('Dooley-Feil','DF','Tiana Port',495,'42347','East Alethaside','Company'),('Emmerich-Braun','EB','Thompson Mountain',184,'49901','New Timmy','Research Center'),('Fadel, Mills and Senger','FMS','Berge Landing',18,'61230','New Melody','Research Center'),('Fritsch Ltd','Fritsch','Feil Burgs',1,'59684','Matteoland','Research Center'),('Gleason PLC','Gleason','Schmidt Skyway',314,'57540','South Edwinmouth','University'),('Hahn-Smith','HS','Miles Ranch',14,'90550','Kemmerhaven','Company'),('Heidenreich Inc','HDN','Dach Coves',36,'57197','East Alisa','Research Center'),('Hickle and Sons','HIC','Joesph Corners',370,'20910','Lake Ebba','University'),('Hintz PLC','HZ','Amelie Garden',187,'15290','Robertaton','Research Center'),('Hoppe, Hagenes and Hegmann','','Rogelio Unions',465,'20374','North Bonnieland','Research Center'),('Jacobi Group','JG','Carolyne Path',188,'34267','Joannieshire','Company'),('Jacobi Ltd','JL','Shields Drive',106,'71222','Koeppland','Company'),('Jakubowski-Luettgen','JL','Rowe Stravenue',255,'41072','Kirlinfort','Research Center'),('Jerde, Grant and O\'Kon','JGOK','Brandy Points',355,'71617','South Anabelle','University'),('Klocko PLC','KLCK','Catharine Fields',431,'49236','Shieldsstad','University'),('Kreiger-Kozey','KK','Kerluke Grove',446,'16893','Lake Fiona','Company'),('Kuhlman and Sons','K&S','Runte Roads',106,'46191','Boscochester','Research Center'),('Kuhlman-Cole','KC','Kunze Course',395,'44437','East Joberg','University'),('Marquardt, Marquardt and Hauck','MMH','Ali Station',328,'92554','South Helen','Research Center'),('Mayert Group','MG','Koss Trail',224,'16852','Hirthechester','Research Center'),('McDermott, Balistreri and Heller','MBH','Alivia Forest',152,'68048','North Idellburgh','Research Center'),('McGlynn LLC','MCG','Stanton Springs',119,'00713','West Jaylon','Research Center');
+INSERT INTO `organization` VALUES ('Abernathy-Cremin','AC','Greta Mountain',371,'18498','Lemkeshire'),('Adams, Weissnat and Roob','AWR','Kunze Viaduct',65,'86973','New Isaimouth'),('Barton Inc','Barton','Murazik Curve',192,'44932','West Eviemouth'),('Bednar Ltd','Bednar','D\'Amore Pine',356,'98352','Wehnerborough'),('Bergstrom-Huels','Ber.Hu.','Orrin Trace',74,'90348','Ziemeport'),('Brekke LLC','Brekke','Wilkinson Landing',93,'33244','Port Jeraldburgh'),('Cummings, Medhurst and Brown','CMB','Veum Trail',490,'67262','Ondrickamouth'),('Deckow-Smitham','DS','Ebert Stream',111,'65844','Romagueraview'),('Dooley-Feil','DF','Tiana Port',495,'42347','East Alethaside'),('Emmerich-Braun','EB','Thompson Mountain',184,'49901','New Timmy'),('Fadel, Mills and Senger','FMS','Berge Landing',18,'61230','New Melody'),('Fritsch Ltd','Fritsch','Feil Burgs',1,'59684','Matteoland'),('Gleason PLC','Gleason','Schmidt Skyway',314,'57540','South Edwinmouth'),('Hahn-Smith','HS','Miles Ranch',14,'90550','Kemmerhaven'),('Heidenreich Inc','HDN','Dach Coves',36,'57197','East Alisa'),('Hickle and Sons','HIC','Joesph Corners',370,'20910','Lake Ebba'),('Hintz PLC','HZ','Amelie Garden',187,'15290','Robertaton'),('Hoppe, Hagenes and Hegmann','','Rogelio Unions',465,'20374','North Bonnieland'),('Jacobi Group','JG','Carolyne Path',188,'34267','Joannieshire'),('Jacobi Ltd','JL','Shields Drive',106,'71222','Koeppland'),('Jakubowski-Luettgen','JL','Rowe Stravenue',255,'41072','Kirlinfort'),('Jerde, Grant and O\'Kon','JGOK','Brandy Points',355,'71617','South Anabelle'),('Klocko PLC','KLCK','Catharine Fields',431,'49236','Shieldsstad'),('Kreiger-Kozey','KK','Kerluke Grove',446,'16893','Lake Fiona'),('Kuhlman and Sons','K&S','Runte Roads',106,'46191','Boscochester'),('Kuhlman-Cole','KC','Kunze Course',395,'44437','East Joberg'),('Marquardt, Marquardt and Hauck','MMH','Ali Station',328,'92554','South Helen'),('Mayert Group','MG','Koss Trail',224,'16852','Hirthechester'),('McDermott, Balistreri and Heller','MBH','Alivia Forest',152,'68048','North Idellburgh'),('McGlynn LLC','MCG','Stanton Springs',119,'00713','West Jaylon');
 /*!40000 ALTER TABLE `organization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,25 +104,6 @@ LOCK TABLES `project_rating` WRITE;
 INSERT INTO `project_rating` VALUES (1,39,7,'2000-07-22'),(2,47,7,'2010-01-21'),(3,50,6,'1992-07-05'),(4,83,9,'1979-09-10'),(5,96,9,'1977-04-19'),(6,70,9,'1986-07-09'),(7,47,1,'1999-11-16'),(8,29,8,'2012-09-10'),(9,23,2,'1993-05-22'),(10,101,6,'1971-01-22'),(11,89,8,'2016-11-01'),(12,4,10,'1977-03-08'),(13,101,4,'2008-02-04'),(14,23,2,'1981-10-27'),(15,8,8,'2001-03-19'),(16,58,9,'1971-09-23'),(17,32,8,'1991-02-02'),(18,108,7,'1998-03-27'),(19,89,9,'1982-09-10'),(20,42,5,'1970-05-20'),(21,106,4,'1975-02-08'),(22,11,8,'2008-10-01'),(23,109,4,'1975-06-03'),(24,2,9,'2014-06-05'),(25,30,4,'1973-05-15'),(26,61,9,'2016-11-10'),(27,98,1,'1996-02-16'),(28,16,4,'1997-07-18'),(29,38,3,'1997-06-14'),(30,79,4,'2007-10-30'),(31,79,2,'1988-05-07'),(32,77,8,'1992-11-21'),(33,16,3,'1974-04-06'),(34,96,6,'2001-04-28'),(35,50,6,'2007-06-16'),(36,1,8,'2008-09-07'),(37,56,9,'2009-10-04'),(38,96,2,'1971-04-18'),(39,50,8,'1971-10-10'),(40,79,4,'2001-08-23'),(41,87,10,'2003-09-17'),(42,7,3,'2006-10-02'),(43,83,4,'2016-11-02'),(44,78,8,'1997-02-13'),(45,30,1,'2012-06-29'),(46,91,6,'1983-11-08'),(47,26,5,'1972-08-30'),(48,61,7,'2005-12-18'),(49,88,9,'1983-12-13'),(50,4,7,'1998-05-01'),(51,103,10,'1978-01-16'),(52,84,8,'2008-06-22'),(53,14,3,'2018-07-09'),(54,102,9,'1971-05-12'),(55,85,9,'1996-05-05'),(56,44,2,'1987-10-14'),(57,52,3,'1987-05-07'),(58,73,8,'2020-04-27'),(59,59,8,'1982-03-07'),(60,90,7,'1988-02-09'),(61,41,1,'1971-07-16'),(62,27,8,'1983-01-20'),(63,56,1,'2001-10-22'),(64,57,7,'2014-04-18'),(65,13,5,'2021-11-28'),(66,106,7,'1980-10-10'),(67,57,3,'2021-05-27'),(68,69,8,'1974-10-31'),(69,91,9,'2014-07-25'),(70,86,5,'2010-10-18'),(71,2,3,'1982-02-04'),(72,100,8,'2021-12-21'),(73,57,4,'2008-07-08'),(74,25,3,'1996-03-20'),(75,23,7,'2017-11-06'),(76,42,7,'1984-06-30'),(77,103,9,'2009-06-21'),(78,70,10,'1984-03-17'),(79,28,3,'2001-12-06'),(80,67,10,'2022-04-02'),(81,91,4,'1974-03-01'),(82,83,7,'1971-08-26'),(83,93,8,'2017-07-07'),(84,100,7,'2001-01-07'),(85,1,9,'2018-11-23'),(86,32,5,'1973-06-13'),(87,76,9,'2004-12-05'),(88,100,5,'1998-02-08'),(89,97,3,'2005-07-08'),(90,50,6,'2002-07-09'),(91,85,5,'2022-03-19'),(92,89,7,'1990-04-22'),(93,30,3,'2014-11-12'),(94,95,7,'2021-07-06'),(95,109,5,'1971-05-12'),(96,104,6,'1976-07-21'),(97,53,7,'2016-08-17'),(98,28,9,'2012-02-29'),(99,31,5,'2005-04-15'),(100,45,10,'1977-07-12'),(101,103,10,'2006-03-14'),(102,30,10,'1970-07-04'),(103,25,8,'2018-07-15'),(104,31,3,'1978-10-26'),(105,84,9,'1989-02-11'),(106,38,5,'1983-01-17'),(107,77,10,'2005-09-21'),(108,21,10,'1994-02-01'),(109,88,10,'2003-07-21'),(110,41,9,'1978-08-29'),(111,55,8,'1994-05-11'),(112,99,4,'2009-04-16'),(113,19,4,'1996-01-16'),(114,90,6,'1981-10-09'),(115,4,5,'2004-11-25'),(116,32,6,'1983-07-04'),(117,109,9,'2014-04-06'),(118,97,6,'1983-02-11'),(119,6,7,'2017-10-07'),(120,10,10,'1992-09-30');
 /*!40000 ALTER TABLE `project_rating` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `check_researcher_not_in_organization` BEFORE INSERT ON `project_rating` FOR EACH ROW BEGIN
- IF rating_researcher_in_organization(NEW.projectId, NEW.researcherId) = 1 THEN
- SET NEW.researcherId = NULL;
- END IF;
- END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Dumping data for table `project_researchers`
@@ -130,6 +123,16 @@ LOCK TABLES `related_to` WRITE;
 /*!40000 ALTER TABLE `related_to` DISABLE KEYS */;
 INSERT INTO `related_to` VALUES (3,'Biology'),(7,'Biology'),(10,'Biology'),(12,'Biology'),(37,'Biology'),(44,'Biology'),(45,'Biology'),(54,'Biology'),(58,'Biology'),(59,'Biology'),(66,'Biology'),(67,'Biology'),(71,'Biology'),(74,'Biology'),(77,'Biology'),(81,'Biology'),(86,'Biology'),(89,'Biology'),(98,'Biology'),(104,'Biology'),(105,'Biology'),(109,'Biology'),(110,'Biology'),(112,'Biology'),(113,'Biology'),(2,'Biotechnology'),(10,'Biotechnology'),(11,'Biotechnology'),(13,'Biotechnology'),(16,'Biotechnology'),(22,'Biotechnology'),(26,'Biotechnology'),(27,'Biotechnology'),(32,'Biotechnology'),(39,'Biotechnology'),(42,'Biotechnology'),(57,'Biotechnology'),(63,'Biotechnology'),(73,'Biotechnology'),(76,'Biotechnology'),(89,'Biotechnology'),(94,'Biotechnology'),(95,'Biotechnology'),(99,'Biotechnology'),(108,'Biotechnology'),(111,'Biotechnology'),(114,'Biotechnology'),(116,'Biotechnology'),(3,'Chemistry'),(7,'Chemistry'),(14,'Chemistry'),(18,'Chemistry'),(22,'Chemistry'),(23,'Chemistry'),(25,'Chemistry'),(30,'Chemistry'),(40,'Chemistry'),(44,'Chemistry'),(47,'Chemistry'),(48,'Chemistry'),(49,'Chemistry'),(52,'Chemistry'),(53,'Chemistry'),(73,'Chemistry'),(84,'Chemistry'),(85,'Chemistry'),(87,'Chemistry'),(93,'Chemistry'),(97,'Chemistry'),(99,'Chemistry'),(106,'Chemistry'),(107,'Chemistry'),(110,'Chemistry'),(114,'Chemistry'),(119,'Chemistry'),(120,'Chemistry'),(12,'Clinical medicine'),(18,'Clinical medicine'),(22,'Clinical medicine'),(25,'Clinical medicine'),(26,'Clinical medicine'),(29,'Clinical medicine'),(30,'Clinical Medicine'),(47,'Clinical medicine'),(53,'Clinical medicine'),(56,'Clinical medicine'),(60,'Clinical medicine'),(63,'Clinical medicine'),(68,'Clinical medicine'),(70,'Clinical medicine'),(72,'Clinical medicine'),(75,'Clinical medicine'),(76,'Clinical medicine'),(77,'Clinical medicine'),(82,'Clinical medicine'),(84,'Clinical medicine'),(87,'Clinical medicine'),(91,'Clinical medicine'),(92,'Clinical medicine'),(93,'Clinical medicine'),(94,'Clinical medicine'),(97,'Clinical medicine'),(99,'Clinical medicine'),(104,'Clinical medicine'),(108,'Clinical medicine'),(112,'Clinical medicine'),(115,'Clinical medicine'),(116,'Clinical medicine'),(119,'Clinical medicine'),(1,'Computer Science'),(6,'Computer Science'),(8,'Computer Science'),(9,'Computer Science'),(11,'Computer Science'),(15,'Computer Science'),(16,'Computer Science'),(18,'Computer Science'),(20,'Computer Science'),(36,'Computer Science'),(37,'Computer Science'),(49,'Computer Science'),(57,'Computer Science'),(65,'Computer Science'),(68,'Computer Science'),(69,'Computer Science'),(71,'Computer Science'),(76,'Computer Science'),(83,'Computer Science'),(84,'Computer Science'),(85,'Computer Science'),(86,'Computer Science'),(93,'Computer Science'),(95,'Computer Science'),(96,'Computer Science'),(103,'Computer Science'),(106,'Computer Science'),(107,'Computer Science'),(109,'Computer Science'),(110,'Computer Science'),(112,'Computer Science'),(115,'Computer Science'),(117,'Computer Science'),(4,'Electronics'),(11,'Electronics'),(20,'Electronics'),(26,'Electronics'),(29,'Electronics'),(31,'Electronics'),(35,'Electronics'),(38,'Electronics'),(46,'Electronics'),(62,'Electronics'),(64,'Electronics'),(67,'Electronics'),(71,'Electronics'),(72,'Electronics'),(75,'Electronics'),(77,'Electronics'),(82,'Electronics'),(83,'Electronics'),(85,'Electronics'),(89,'Electronics'),(94,'Electronics'),(95,'Electronics'),(98,'Electronics'),(99,'Electronics'),(102,'Electronics'),(104,'Electronics'),(107,'Electronics'),(111,'Electronics'),(114,'Electronics'),(118,'Electronics'),(119,'Electronics'),(2,'Materials engineering'),(14,'Materials engineering'),(23,'Materials engineering'),(29,'Materials engineering'),(31,'Materials engineering'),(33,'Materials engineering'),(38,'Materials engineering'),(42,'Materials engineering'),(44,'Materials engineering'),(48,'Materials engineering'),(49,'Materials engineering'),(58,'Materials engineering'),(65,'Materials engineering'),(78,'Materials engineering'),(85,'Materials engineering'),(88,'Materials engineering'),(101,'Materials engineering'),(102,'Materials engineering'),(104,'Materials engineering'),(105,'Materials engineering'),(111,'Materials engineering'),(113,'Materials engineering'),(115,'Materials engineering'),(118,'Materials engineering'),(1,'Mathematics'),(5,'Mathematics'),(13,'Mathematics'),(14,'Mathematics'),(15,'Mathematics'),(19,'Mathematics'),(21,'Mathematics'),(26,'Mathematics'),(27,'Mathematics'),(28,'Mathematics'),(32,'Mathematics'),(52,'Mathematics'),(59,'Mathematics'),(79,'Mathematics'),(80,'Mathematics'),(83,'Mathematics'),(87,'Mathematics'),(88,'Mathematics'),(90,'Mathematics'),(92,'Mathematics'),(93,'Mathematics'),(94,'Mathematics'),(95,'Mathematics'),(96,'Mathematics'),(97,'Mathematics'),(103,'Mathematics'),(104,'Mathematics'),(105,'Mathematics'),(106,'Mathematics'),(112,'Mathematics'),(118,'Mathematics'),(2,'Medical engineering'),(6,'Medical engineering'),(7,'Medical engineering'),(16,'Medical engineering'),(25,'Medical engineering'),(26,'Medical engineering'),(29,'Medical engineering'),(30,'Medical Engineering'),(42,'Medical engineering'),(51,'Medical engineering'),(53,'Medical engineering'),(55,'Medical engineering'),(64,'Medical engineering'),(72,'Medical engineering'),(76,'Medical engineering'),(78,'Medical engineering'),(87,'Medical engineering'),(88,'Medical engineering'),(91,'Medical engineering'),(92,'Medical engineering'),(94,'Medical engineering'),(98,'Medical engineering'),(102,'Medical engineering'),(104,'Medical engineering'),(106,'Medical engineering'),(111,'Medical engineering'),(114,'Medical engineering'),(118,'Medical engineering'),(120,'Medical engineering'),(16,'Nano-technology'),(17,'Nano-technology'),(22,'Nano-technology'),(24,'Nano-technology'),(33,'Nano-technology'),(35,'Nano-technology'),(36,'Nano-technology'),(39,'Nano-technology'),(50,'Nano-technology'),(58,'Nano-technology'),(61,'Nano-technology'),(68,'Nano-technology'),(70,'Nano-technology'),(75,'Nano-technology'),(76,'Nano-technology'),(79,'Nano-technology'),(80,'Nano-technology'),(82,'Nano-technology'),(84,'Nano-technology'),(85,'Nano-technology'),(87,'Nano-technology'),(89,'Nano-technology'),(95,'Nano-technology'),(105,'Nano-technology'),(106,'Nano-technology'),(107,'Nano-technology'),(110,'Nano-technology'),(111,'Nano-technology'),(112,'Nano-technology'),(119,'Nano-technology'),(120,'Nano-technology'),(5,'Physics'),(17,'Physics'),(19,'Physics'),(21,'Physics'),(25,'Physics'),(33,'Physics'),(34,'Physics'),(39,'Physics'),(41,'Physics'),(43,'Physics'),(46,'Physics'),(47,'Physics'),(49,'Physics'),(53,'Physics'),(73,'Physics'),(76,'Physics'),(77,'Physics'),(79,'Physics'),(84,'Physics'),(86,'Physics'),(90,'Physics'),(92,'Physics'),(95,'Physics'),(96,'Physics'),(99,'Physics'),(100,'Physics'),(101,'Physics'),(103,'Physics'),(104,'Physics'),(108,'Physics'),(109,'Physics'),(110,'Physics'),(112,'Physics'),(116,'Physics'),(119,'Physics');
 /*!40000 ALTER TABLE `related_to` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `research_center`
+--
+
+LOCK TABLES `research_center` WRITE;
+/*!40000 ALTER TABLE `research_center` DISABLE KEYS */;
+INSERT INTO `research_center` VALUES ('Adams, Weissnat and Roob',15000.00,200000.00),('Barton Inc',15000.00,200000.00),('Bergstrom-Huels',15000.00,200000.00),('Emmerich-Braun',15000.00,200000.00),('Fadel, Mills and Senger',15000.00,200000.00),('Fritsch Ltd',15000.00,200000.00),('Heidenreich Inc',15000.00,200000.00),('Hintz PLC',15000.00,200000.00),('Hoppe, Hagenes and Hegmann',15000.00,200000.00),('Jakubowski-Luettgen',15000.00,200000.00),('Kuhlman and Sons',15000.00,200000.00),('Marquardt, Marquardt and Hauck',15000.00,200000.00),('Mayert Group',15000.00,200000.00),('McDermott, Balistreri and Heller',15000.00,200000.00),('McGlynn LLC',15000.00,200000.00);
+/*!40000 ALTER TABLE `research_center` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -153,6 +156,16 @@ INSERT INTO `researcher` VALUES (1,'Brannon','Kassulke','male','1985-01-25'),(2,
 UNLOCK TABLES;
 
 --
+-- Dumping data for table `university`
+--
+
+LOCK TABLES `university` WRITE;
+/*!40000 ALTER TABLE `university` DISABLE KEYS */;
+INSERT INTO `university` VALUES ('Abernathy-Cremin',50000.00),('Brekke LLC',50000.00),('Cummings, Medhurst and Brown',50000.00),('Gleason PLC',50000.00),('Hickle and Sons',50000.00),('Jerde, Grant and O\'Kon',50000.00),('Klocko PLC',50000.00),('Kuhlman-Cole',50000.00);
+/*!40000 ALTER TABLE `university` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping data for table `works_for`
 --
 
@@ -161,39 +174,7 @@ LOCK TABLES `works_for` WRITE;
 INSERT INTO `works_for` VALUES (1,'Abernathy-Cremin','2004-06-11'),(2,'Adams, Weissnat and Roob','2005-07-23'),(3,'Barton Inc','2012-06-17'),(4,'Bednar Ltd','2006-10-10'),(5,'Bergstrom-Huels','2002-07-13'),(6,'Brekke LLC','1994-03-16'),(7,'Cummings, Medhurst and Brown','2015-04-08'),(8,'Deckow-Smitham','2011-05-16'),(9,'Dooley-Feil','2012-08-20'),(10,'Emmerich-Braun','1990-01-18'),(11,'Fadel, Mills and Senger','1998-06-30'),(12,'Fritsch Ltd','2019-02-09'),(13,'Gleason PLC','1990-06-28'),(14,'Hahn-Smith','1993-05-12'),(15,'Heidenreich Inc','2017-10-12'),(16,'Hickle and Sons','2000-10-01'),(17,'Hintz PLC','2003-04-24'),(18,'Hoppe, Hagenes and Hegmann','2004-11-09'),(19,'Jacobi Group','2016-05-10'),(20,'Jacobi Ltd','2001-01-10'),(21,'Jakubowski-Luettgen','1997-08-11'),(22,'Jerde, Grant and O\'Kon','2012-02-13'),(23,'Klocko PLC','2014-11-20'),(24,'Kreiger-Kozey','2019-05-20'),(25,'Kuhlman and Sons','2006-05-09'),(26,'Kuhlman-Cole','2018-04-18'),(27,'Marquardt, Marquardt and Hauck','2010-02-09'),(28,'Mayert Group','1995-10-14'),(29,'McDermott, Balistreri and Heller','2008-01-29'),(30,'McGlynn LLC','2002-06-12'),(31,'Kuhlman-Cole','2015-11-01'),(32,'Jakubowski-Luettgen','2004-10-06'),(33,'Jacobi Ltd','1997-07-11'),(34,'Heidenreich Inc','2019-07-04'),(35,'Strosin, Hickle and Breitenberg','1997-03-03'),(36,'Deckow-Smitham','2014-05-10'),(37,'Cummings, Medhurst and Brown','2013-10-26'),(38,'Brekke LLC','2013-09-10'),(39,'Barton Inc','2007-12-25'),(40,'Abernathy-Cremin','2017-07-04'),(41,'Abernathy-Cremin','1995-08-17'),(42,'Adams, Weissnat and Roob','1998-04-19'),(43,'Barton Inc','2016-01-09'),(44,'Bednar Ltd','2012-11-26'),(45,'Bergstrom-Huels','2000-09-20'),(46,'Brekke LLC','2019-08-15'),(47,'Cummings, Medhurst and Brown','2003-05-21'),(48,'Deckow-Smitham','2011-06-15'),(49,'Dooley-Feil','2018-03-16'),(50,'Emmerich-Braun','2012-03-06'),(51,'Fadel, Mills and Senger','2011-04-16'),(52,'Fritsch Ltd','2007-03-15'),(53,'Gleason PLC','2019-05-02'),(54,'Hahn-Smith','2012-12-21'),(55,'Heidenreich Inc','2000-02-01'),(56,'Hickle and Sons','2013-01-14'),(57,'Hintz PLC','2003-09-01'),(58,'Hoppe, Hagenes and Hegmann','2000-07-10'),(59,'Jacobi Group','2013-11-20'),(60,'Jacobi Ltd','2013-03-09'),(61,'Jakubowski-Luettgen','2001-02-27'),(62,'Jerde, Grant and O\'Kon','2009-05-12'),(63,'Klocko PLC','2018-04-17'),(64,'Kreiger-Kozey','2001-08-14'),(65,'Kuhlman and Sons','1995-07-02'),(66,'Kuhlman-Cole','2013-02-14'),(67,'Marquardt, Marquardt and Hauck','2010-10-18'),(68,'Mayert Group','2012-08-30'),(69,'McDermott, Balistreri and Heller','1997-06-25'),(70,'McGlynn LLC','2000-09-21'),(71,'Kuhlman-Cole','2017-10-26'),(72,'Jakubowski-Luettgen','2018-05-10'),(73,'Jacobi Ltd','2015-03-26'),(74,'Heidenreich Inc','2003-01-14'),(75,'Strosin, Hickle and Breitenberg','2001-12-11'),(76,'Deckow-Smitham','2000-04-20'),(77,'Cummings, Medhurst and Brown','2012-07-19'),(78,'Brekke LLC','2007-12-07'),(79,'Barton Inc','1999-06-03'),(80,'Abernathy-Cremin','2014-10-23'),(81,'Abernathy-Cremin','2006-09-08'),(82,'Adams, Weissnat and Roob','2003-03-28'),(83,'Barton Inc','2006-10-31'),(84,'Bednar Ltd','2004-01-16'),(85,'Bergstrom-Huels','2003-05-25'),(86,'Brekke LLC','2015-10-03'),(87,'Cummings, Medhurst and Brown','2010-11-30'),(88,'Deckow-Smitham','2005-02-12'),(89,'Dooley-Feil','2009-12-17'),(90,'Emmerich-Braun','2000-07-25'),(91,'Fadel, Mills and Senger','1999-03-09'),(92,'Fritsch Ltd','2015-02-23'),(93,'Gleason PLC','2002-09-19'),(94,'Hahn-Smith','2016-08-30'),(95,'Heidenreich Inc','2007-07-04'),(96,'Hickle and Sons','2017-07-14'),(97,'Hintz PLC','2011-09-11'),(98,'Hoppe, Hagenes and Hegmann','2009-09-21'),(99,'Jacobi Group','2007-10-29'),(100,'Jacobi Ltd','2011-09-06'),(101,'Jakubowski-Luettgen','2012-04-25'),(102,'Jerde, Grant and O\'Kon','1990-11-29'),(103,'Klocko PLC','2012-01-01'),(104,'Kreiger-Kozey','2007-12-13'),(105,'Kuhlman and Sons','2010-05-16'),(106,'Kuhlman-Cole','2011-07-23'),(107,'Marquardt, Marquardt and Hauck','2018-10-07'),(108,'Mayert Group','2005-04-06'),(109,'McDermott, Balistreri and Heller','2002-05-08'),(110,'McGlynn LLC','2007-04-19');
 /*!40000 ALTER TABLE `works_for` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'db_project'
---
-/*!50003 DROP FUNCTION IF EXISTS `rating_researcher_in_organization` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `rating_researcher_in_organization`(newProjectId INT, newResearcherId INT) RETURNS int
-    READS SQL DATA
-BEGIN RETURN EXISTS (
-  SELECT
-    m.organizationName
-  FROM
-    managed_by AS m
-    JOIN works_for AS w ON newResearcherId = w.researcherId
-    AND m.organizationName = w.organizationName
-  WHERE
-    m.projectId = newProjectId
-);
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -203,4 +184,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed
+-- Dump completed on 2022-06-05  3:12:42

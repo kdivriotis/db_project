@@ -48,19 +48,48 @@ CREATE TABLE `organization` (
   `number` int NOT NULL COMMENT 'Διεύθυνση οργανισμού: Αριθμός',
   `postal_code` varchar(5) NOT NULL COMMENT 'Διεύθυνση οργανισμού: Τ.Κ.',
   `city` varchar(100) NOT NULL COMMENT 'Διεύθυνση οργανισμού: Πόλη',
-  `category` varchar(20) NOT NULL COMMENT 'Κατηγορία: Ερευνητικό Κέντρο(Research Center), Πανεπιστήμιο (University) ή Εταιρεία (Company)',
-  PRIMARY KEY (`name`),
-  KEY `idx_category` (`category`),
-  CONSTRAINT `check_category` CHECK (
-    (
-      `category` in (
-        _utf8mb4 'University',
-        _utf8mb4 'Company',
-        _utf8mb4 'Research Center'
-      )
-    )
-  )
+  PRIMARY KEY (`name`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Οργανισμός';
+
+--
+-- Table structure for table `company`
+--
+DROP TABLE IF EXISTS `company`;
+
+CREATE TABLE `company` (
+  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα της εταιρείας',
+  `own_funds` decimal(9, 2) NOT NULL COMMENT 'Ίδια κεφάλαια',
+  PRIMARY KEY (`organizationName`),
+  KEY `is_company` (`organizationName`),
+  CONSTRAINT `is_company` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σχέση IS_A για οργανισμούς που είναι εταιρείες';
+
+--
+-- Table structure for table `university`
+--
+DROP TABLE IF EXISTS `university`;
+
+CREATE TABLE `university` (
+  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα του πανεπιστημίου',
+  `ministry_budget` decimal(9, 2) NOT NULL COMMENT 'Προϋπολογισμός από Υπουργείο Παιδείας',
+  PRIMARY KEY (`organizationName`),
+  KEY `is_university` (`organizationName`),
+  CONSTRAINT `is_university` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σχέση IS_A για οργανισμούς που είναι πανεπιστήμια';
+
+--
+-- Table structure for table `research_center`
+--
+DROP TABLE IF EXISTS `research_center`;
+
+CREATE TABLE `research_center` (
+  `organizationName` varchar(100) NOT NULL COMMENT 'Όνομα του ερευνητικού κέντρου',
+  `ministry_budget` decimal(9, 2) NOT NULL COMMENT 'Προϋπολογισμός από Υπουργείο Παιδείας',
+  `self_budget` decimal(9, 2) NOT NULL COMMENT 'Προϋπολογισμός από ιδιωτικές δράσεις',
+  PRIMARY KEY (`organizationName`),
+  KEY `is_research_center` (`organizationName`),
+  CONSTRAINT `is_research_center` FOREIGN KEY (`organizationName`) REFERENCES `organization` (`name`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Σχέση IS_A για οργανισμούς που είναι ερευνητικά κέντρα';
 
 --
 -- Table structure for table `phone_number`
@@ -314,7 +343,7 @@ DELIMITER ;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `project_information` AS select `p`.`id` AS `id`,`p`.`title` AS `title`,`p`.`description` AS `description`,`p`.`budget` AS `budget`,`p`.`start_date` AS `startDate`,`p`.`end_date` AS `endDate`,`p`.`duration` AS `duration`,`e`.`name` AS `executiveName`,`pr`.`name` AS `programName`,`pr`.`address` AS `programAddress`,`rm`.`name` AS `researchManagerName`,`rm`.`surname` AS `researchManagerSurname`,`rm`.`gender` AS `researchManagerGender`,`rm`.`birth_date` AS `researchManagerBirthDate`,`rating`.`rating` AS `rating`,`rating`.`rating_date` AS `ratingDate`,`rr`.`name` AS `ratingResearcherName`,`rr`.`surname` AS `ratingResearcherSurname`,`o`.`name` AS `organizationName`,`o`.`abbreviation` AS `organizationAbbreviation`,`o`.`street` AS `organizationStreet`,`o`.`number` AS `organizationStreetNumber`,`o`.`postal_code` AS `organizationPostalCode`,`o`.`city` AS `organizationCity`,`o`.`category` AS `organizationCategory`,`rt`.`research_fieldName` AS `researchFieldName` from ((((((((`project` `p` join `executive` `e` on((`e`.`id` = `p`.`executiveId`))) join `program` `pr` on((`pr`.`id` = `p`.`programId`))) join `researcher` `rm` on((`rm`.`id` = `p`.`researchManagerId`))) join `project_rating` `rating` on((`rating`.`projectId` = `p`.`id`))) join `researcher` `rr` on((`rr`.`id` = `rating`.`researcherId`))) join `managed_by` `mb` on((`mb`.`projectId` = `p`.`id`))) join `organization` `o` on((`o`.`name` = `mb`.`organizationName`))) join `related_to` `rt` on((`rt`.`projectId` = `p`.`id`))) order by `p`.`id`,`rt`.`research_fieldName` */
+/*!50001 VIEW `project_information` AS select `p`.`id` AS `id`,`p`.`title` AS `title`,`p`.`description` AS `description`,`p`.`budget` AS `budget`,`p`.`start_date` AS `startDate`,`p`.`end_date` AS `endDate`,`p`.`duration` AS `duration`,`e`.`name` AS `executiveName`,`pr`.`name` AS `programName`,`pr`.`address` AS `programAddress`,`rm`.`name` AS `researchManagerName`,`rm`.`surname` AS `researchManagerSurname`,`rm`.`gender` AS `researchManagerGender`,`rm`.`birth_date` AS `researchManagerBirthDate`,`rating`.`rating` AS `rating`,`rating`.`rating_date` AS `ratingDate`,`rr`.`name` AS `ratingResearcherName`,`rr`.`surname` AS `ratingResearcherSurname`,`o`.`name` AS `organizationName`,`o`.`abbreviation` AS `organizationAbbreviation`,`o`.`street` AS `organizationStreet`,`o`.`number` AS `organizationStreetNumber`,`o`.`postal_code` AS `organizationPostalCode`,`o`.`city` AS `organizationCity`,`rt`.`research_fieldName` AS `researchFieldName` from ((((((((`project` `p` join `executive` `e` on((`e`.`id` = `p`.`executiveId`))) join `program` `pr` on((`pr`.`id` = `p`.`programId`))) join `researcher` `rm` on((`rm`.`id` = `p`.`researchManagerId`))) join `project_rating` `rating` on((`rating`.`projectId` = `p`.`id`))) join `researcher` `rr` on((`rr`.`id` = `rating`.`researcherId`))) join `managed_by` `mb` on((`mb`.`projectId` = `p`.`id`))) join `organization` `o` on((`o`.`name` = `mb`.`organizationName`))) join `related_to` `rt` on((`rt`.`projectId` = `p`.`id`))) order by `p`.`id`,`rt`.`research_fieldName` */
 ;
 
 --
