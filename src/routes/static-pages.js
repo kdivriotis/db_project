@@ -67,6 +67,13 @@ router.get(/^\/executives\/funding-per-company(\.html)?$/, (req, res) => {
   );
 });
 
+// Organization detailed information (organization-info.html)
+router.get(/^\/organizations\/information(\.html)?$/, (req, res) => {
+  return res.sendFile(
+    path.join(__dirname, "..", "views", "organization-info.html")
+  );
+});
+
 // Organizations with same number of projects over two years (organization-projects.html)
 router.get(/^\/organizations\/same-projects(\.html)?$/, (req, res) => {
   return res.sendFile(

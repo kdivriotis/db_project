@@ -1,0 +1,114 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  user-select: none;
+}
+
+.organization-form {
+  margin: 1rem auto;
+  padding: 0.5rem;
+  width: 70%;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  color: white;
+  background-color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande";
+  user-select: none;
+}
+
+.field {
+  text-align: center;
+}
+
+.field > label {
+  margin: 0.2rem auto;
+}
+
+.field > select {
+  display: block;
+  margin: 0.1rem auto;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  width: 80%;
+}
+
+.message {
+  color: black;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+}
+
+.message.has-data {
+  display: none;
+}
+
+.message.has-error {
+  color: red;
+}
+
+.message.no-data {
+  color: yellow;
+}
+
+.organization-info-wrapper,
+.organization-phones-wrapper {
+  margin: 1rem auto;
+  width: 70%;
+  max-height: calc(100vw-4rem);
+  overflow-y: auto;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.organization-card {
+  overflow-y: auto;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  user-select: none;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  overflow: hidden;
+  box-shadow: 0 0 1rem 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.organization-card > h3 {
+  position: sticky;
+  top: 0;
+  padding: 1rem 0.3rem;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  word-wrap: break-word;
+  font-size: 1rem;
+}
+
+.organization-card > p.main {
+  font-size: 1.2rem;
+  font-weight: 900;
+  padding: 1rem 0.3rem;
+}
+
+.organization-card > p.secondary {
+  font-style: italic;
+  padding: 1rem 0.3rem;
+}

@@ -25,8 +25,8 @@
     <link rel="manifest" href="/icons/site.webmanifest" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles/organization-info.css" />
     <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/youngest-researchers.css" />
   </head>
   <body>
     <main class="layout">
@@ -45,19 +45,8 @@
           <div class="sidebar-nav-item">
             <a href="/projects">Projects</a>
           </div>
-          <div class="sidebar-nav-item active">
-            <a href="#">Researchers</a>
-          </div>
-          <div class="sidebar-nav-sub-item">
-            <a href="/researchers/projects">Projects per Researcher</a>
-          </div>
-          <div class="sidebar-nav-sub-item active">
-            <a href="/researchers/young">Young Researchers</a>
-          </div>
-          <div class="sidebar-nav-sub-item">
-            <a href="/researchers/no-deliverables"
-              >Projects without Deliverables</a
-            >
+          <div class="sidebar-nav-item">
+            <a href="/researchers/projects">Researchers</a>
           </div>
           <div class="sidebar-nav-item">
             <a href="/research-fields">Research Fields</a>
@@ -65,24 +54,40 @@
           <div class="sidebar-nav-item">
             <a href="/executives/funding-per-company">Executives</a>
           </div>
-          <div class="sidebar-nav-item">
+          <div class="sidebar-nav-item active">
             <a href="/organizations/information">Organizations</a>
+          </div>
+          <div class="sidebar-nav-sub-item active">
+            <a href="/organizations/information">Information</a>
+          </div>
+          <div class="sidebar-nav-sub-item">
+            <a href="/organizations/same-projects"
+              >Same projects over 2 years</a
+            >
           </div>
         </div>
       </nav>
       <!-- Page contents -->
       <section class="container">
         <h2 class="title">
-          Youngest researchers (under the age of 40) working on active projects
+          Select an organization to view related information
         </h2>
+        <form class="organization-form" onsubmit="return false;">
+          <!-- Select organization -->
+          <div class="field">
+            <label for="organization-name">Organization Name</label>
+            <select id="organization-name"></select>
+          </div>
+        </form>
         <p class="message"></p>
-        <div class="researchers-wrapper"></div>
+        <div class="organization-info-wrapper"></div>
+        <div class="organization-phones-wrapper"></div>
       </section>
     </main>
 
     <script
       type="module"
-      src="/scripts/youngest-researchers.js"
+      src="/scripts/organization-info.js"
       async
       defer
     ></script>
