@@ -196,7 +196,6 @@ const changeOrganizationInfoContent = ({
   organizationNumber,
   organizationPostalCode,
   organizationCity,
-  organizationCategory,
 }) => {
   // create organization div & data
   const organizationContainer = document.createElement("div");
@@ -206,15 +205,11 @@ const changeOrganizationInfoContent = ({
   const organizationContainerName = document.createElement("p");
   organizationContainerName.className = "main";
   organizationContainerName.innerHTML = `${organizationName} (${organizationAbbreviation})`;
-  const organizationContainerCategory = document.createElement("p");
-  organizationContainerCategory.className = "secondary";
-  organizationContainerCategory.innerHTML = organizationCategory;
   const organizationContainerAddress = document.createElement("p");
   organizationContainerAddress.innerHTML = `${organizationStreet} ${organizationNumber}, ${organizationPostalCode}, ${organizationCity}`;
 
   organizationContainer.appendChild(organizationContainerTitle);
   organizationContainer.appendChild(organizationContainerName);
-  organizationContainer.appendChild(organizationContainerCategory);
   organizationContainer.appendChild(organizationContainerAddress);
   wrapperDiv.appendChild(organizationContainer);
 };
@@ -354,7 +349,9 @@ const getProjectInformation = async () => {
  */
 const getProjects = async () => {
   try {
-    const response = await fetch(`${window.location.origin}/api/projects/titles`);
+    const response = await fetch(
+      `${window.location.origin}/api/projects/titles`
+    );
     const { projects } = await response.json();
     for (let project of projects) {
       const opt = document.createElement("option");

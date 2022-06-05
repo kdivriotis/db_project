@@ -13,9 +13,8 @@ module.exports.getFundingPerCompany = async (req, res) => {
         ON p.executiveId = e.id
       JOIN managed_by AS m
         ON p.id = m.projectId
-      JOIN organization AS o
-        ON o.name = m.organizationName
-      WHERE o.category = 'Company'
+      JOIN company AS c
+        ON c.organizationName = m.organizationName
       GROUP BY e.name, m.organizationName
       ORDER BY totalFundingAmount DESC
       LIMIT 5`,
